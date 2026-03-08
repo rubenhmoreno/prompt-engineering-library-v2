@@ -428,6 +428,7 @@ Error scenarios:
 
 ## Related Documents
 
+- [UX Checklist](../quick-ref/ux-checklist.md) — Plain-language usability review for non-technical users (use this when the user is not a designer or developer)
 - [Frontend Developer Agent](./frontend-developer.md) — For implementing the specifications produced by this agent into production HTML, CSS, and JavaScript
 - [Backend Developer Agent](./backend-developer.md) — For form validation, authentication flows, and API contracts that affect UX
 - [Testing Engineer Agent](./testing-engineer.md) — For automating accessibility regression tests with axe-core or Playwright

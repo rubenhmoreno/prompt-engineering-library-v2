@@ -31,6 +31,10 @@ What do you need to do?
 |       --> Apply a Prompting Technique (CoT, Few-Shot, ReAct...)
 |           See core/prompting-techniques.md Activation Table
 |
++-- Deploy to a server (non-technical user)?
+|       --> Simple Deployment Workflow
+|           See workflows/simple-deployment.md
+|
 +-- Combination of all three?
         --> Start with Parallel Development,
             apply TDD inside each track,
@@ -43,6 +47,7 @@ What do you need to do?
 - **Multiple agents working together** → Parallel Development
 - **Proving completion to a stakeholder** → Verification Protocol
 - **AI gives bad output** → Prompting Techniques (CoT, Few-Shot, Step-Back, ReAct)
+- **Deploying (non-technical)** → Simple Deployment Workflow
 
 ---
 

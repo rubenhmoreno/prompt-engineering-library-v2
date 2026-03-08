@@ -51,6 +51,8 @@ What are you trying to accomplish right now?
 | Write tests for existing code | [tdd-workflow](workflows/tdd-workflow.md) | testing-engineer |
 | Debug a production issue | [verification-protocol](workflows/verification-protocol.md), [data-detective](agents/data-detective.md) | data-detective, backend-developer |
 | Deploy to staging or production | [verification-protocol](workflows/verification-protocol.md) | devops-engineer, cloud-infrastructure |
+| Deploy for the first time (non-technical) | [simple-deployment](workflows/simple-deployment.md) | devops-engineer |
+| Check if the interface is easy to use | [ux-checklist](quick-ref/ux-checklist.md) | ui-ux-specialist |
 | Design an API from scratch | [task-decomposition](templates/task-decomposition.md) | api-architect, backend-developer |
 | Run a security audit | [verification-protocol](workflows/verification-protocol.md) | security-auditor, testing-engineer |
 | Profile and optimize performance | [real-validation](core/real-validation.md) | performance-engineer, backend-developer |
@@ -77,6 +79,8 @@ Something unexpected happened. Which document addresses it?
 | Test coverage is below 80% | [workflows/tdd-workflow.md](workflows/tdd-workflow.md) |
 | Not sure what changed between versions | [core/error-prevention.md](core/error-prevention.md) — Section 6 |
 | Deployment went wrong and rollback needed | [agents/devops-engineer.md](agents/devops-engineer.md) |
+| I need to put my app on a server for the first time | [workflows/simple-deployment.md](workflows/simple-deployment.md) |
+| Users say the app is confusing or hard to use | [quick-ref/ux-checklist.md](quick-ref/ux-checklist.md) |
 | Security vulnerability discovered post-deploy | [agents/security-auditor.md](agents/security-auditor.md) |
 | AI gives shallow, wrong, or inconsistent answers | [core/prompting-techniques.md](core/prompting-techniques.md) — Activation Table |
 | Need to choose between multiple valid approaches | [core/prompting-techniques.md](core/prompting-techniques.md) — Tree of Thoughts |
@@ -92,6 +96,7 @@ Fast one-screen lookups (tables and checklists only, no prose).
 | [Workflow Decision Tree](quick-ref/workflow-decision-tree.md) | Choose the right workflow for your task |
 | [Command Reference](quick-ref/command-reference.md) | All essential shell commands by category |
 | [Template Selector](quick-ref/template-selector.md) | Choose the right template for your situation |
+| [UX Checklist](quick-ref/ux-checklist.md) | Plain-language usability review (non-technical) |
 
 ---
 
@@ -129,6 +134,7 @@ prompt-engineering-library-v2/
 ├── workflows/
 │   ├── tdd-workflow.md                     Red-Green-Refactor cycle
 │   ├── parallel-development.md             Multi-agent parallel execution
+│   ├── simple-deployment.md                Non-technical deploy guide
 │   └── verification-protocol.md            Evidence collection protocol
 │
 ├── templates/
@@ -144,7 +150,8 @@ prompt-engineering-library-v2/
 │   ├── all-agents-cheatsheet.md            All 11 agents at a glance
 │   ├── workflow-decision-tree.md           Choose the right workflow
 │   ├── command-reference.md                Shell commands by category
-│   └── template-selector.md               Choose the right template
+│   ├── template-selector.md               Choose the right template
+│   └── ux-checklist.md                    Plain-language usability review
 │
 └── archive/
     └── v1-spanish/                         Original Spanish v1 source files

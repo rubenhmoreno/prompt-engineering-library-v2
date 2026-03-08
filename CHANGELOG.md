@@ -16,7 +16,9 @@
 ### Added
 
 - `core/prompting-techniques.md` - Six prompting techniques (CoT, Few-Shot, Step-Back, Self-Consistency, Tree of Thoughts, ReAct) with activation table, software development examples, and agent-technique mapping
-- Cross-references to prompting-techniques.md in INDEX.md, README.md, base-programming.md, multi-agent-orchestration.md, and workflow-decision-tree.md
+- `workflows/simple-deployment.md` - Non-technical deployment guide (3 methods: manual copy, git pull, auto-deploy)
+- `quick-ref/ux-checklist.md` - Plain-language usability checklist for non-technical users (33-item scoring system)
+- Cross-references integrated across INDEX.md, README.md, base-programming.md, multi-agent-orchestration.md, workflow-decision-tree.md, all-agents-cheatsheet.md, and ui-ux-specialist.md
 
 ---
 
