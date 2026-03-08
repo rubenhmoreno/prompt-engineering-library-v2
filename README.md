@@ -23,6 +23,7 @@
 
 | Want to... | Go to |
 |------------|-------|
+| Activate the full methodology | Copy a prompt from [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variants) |
 | Start a new session | Copy [core/base-programming.md](core/base-programming.md) condensed prompt |
 | Use a specialist agent | See Agent Roster below, then open `agents/<name>.md` |
 | Run tasks in parallel | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |
@@ -206,6 +207,7 @@ $ curl http://localhost:8000/health
 
 | Quiero... | Ir a |
 |-----------|------|
+| Activar toda la metodologia | Copiar un prompt de [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variantes) |
 | Iniciar una nueva sesion | Copiar el prompt condensado de [core/base-programming.md](core/base-programming.md) |
 | Usar un agente especialista | Ver la tabla de agentes abajo, luego abrir `agents/<nombre>.md` |
 | Ejecutar tareas en paralelo | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |

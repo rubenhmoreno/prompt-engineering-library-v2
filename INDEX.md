@@ -125,6 +125,7 @@ Fast one-screen lookups (tables and checklists only, no prose).
 ```
 prompt-engineering-library-v2/
 │
+├── ACTIVATION_PROMPT.md                    3 copy-paste prompts (Minimal/Standard/Full)
 ├── README.md                               Core entry point and principles
 ├── INDEX.md                                This file — master navigation
 ├── CONTRIBUTING.md                         Contribution guidelines
