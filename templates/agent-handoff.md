@@ -49,6 +49,18 @@
 
 ## Full Content
 
+### Agent Briefing Template
+
+Used when spawning an agent for the first time (not for mid-workflow handoffs):
+```
+Objective: [what to achieve]
+Input artifacts: [what the agent receives]
+Output artifacts: [what the agent must produce]
+Success criteria: [how to know it's done]
+Tools available: [Read, Write, Edit, Bash, Glob, Grep]
+Out of scope: [what NOT to do — explicit boundaries]
+```
+
 ### Full Template
 
 ```markdown
@@ -58,6 +70,22 @@
 **Task:** [Feature or project name]
 **Handoff ID:** [feature-name-YYYY-MM-DD-NNN]
 **Priority:** HIGH | MEDIUM | LOW
+
+---
+
+## 0. Durable Decisions
+
+Key-value store of decisions that persist across ALL subsequent handoffs in this workflow. Every agent reads this first.
+
+```
+auth_strategy: JWT with refresh tokens (not sessions)
+test_runner: pytest with --cov flag
+deployment_target: EC2 behind ALB (not Lambda)
+database: PostgreSQL 15 (not MySQL)
+api_style: REST with JSON (not GraphQL)
+```
+
+Update this block when a decision is made. Never contradict a durable decision without explicit orchestrator approval.
 
 ---
 

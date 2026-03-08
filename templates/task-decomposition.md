@@ -49,6 +49,26 @@
 
 ## Full Content
 
+### Problem Classification
+
+Before decomposing, classify the problem type:
+
+| Type | Signal | Agent Topology | Example |
+|------|--------|---------------|---------|
+| Depth-first | One question, multiple valid approaches | 2-3 agents with DIFFERENT constraints on SAME subject | 'Best database for this use case?' |
+| Breadth-first | Multiple independent sub-questions | 3-5 agents each owning ONE stream | 'Build auth + payments + notifications' |
+| Straightforward | Single focused task, clear path | 1 agent, no orchestration | 'Add pagination to GET /users' |
+
+### Agent Count Heuristics
+
+| Task Scope | Recommended Agents | Notes |
+|------------|-------------------|-------|
+| Single endpoint/component | 1-2 | backend + testing |
+| Full feature | 2-3 | backend + frontend + testing |
+| Subsystem | 3-5 | add architect + security |
+| Cross-service | 5-8 | add infra + data. Max 6 concurrent |
+| Diminishing returns signal | Agents waiting on each other >40% of time |
+
 ### Full Template
 
 ```markdown

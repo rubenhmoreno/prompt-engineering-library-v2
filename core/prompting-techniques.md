@@ -25,6 +25,7 @@ Use this table to decide which technique to apply right now:
 | Making a critical architecture decision | Self-Consistency | Multiple reasoning paths reduce the risk of a bad choice |
 | Evaluating multiple solution approaches | Tree of Thoughts | Explores branches before committing to one |
 | Needing the AI to verify its own work | ReAct | Interleaves reasoning with actual command execution |
+| Irreversible architectural decisions, complex dependency analysis, security threat modeling | Extended Thinking | Forces deeper reasoning at higher token cost. Use `effort: max` for critical decisions, `effort: medium` for standard work (saves ~76% output tokens) |
 
 ### One-Line Rules
 
@@ -347,6 +348,19 @@ FIX: Add 'newdep==1.2.3' to requirements.txt and rebuild.
 This technique connects directly to the library's **VERIFY, DON'T ASSUME** principle. ReAct is the structured method for enforcing it.
 
 **When NOT to use:** Pure code generation tasks where no external verification is needed. ReAct adds latency from command execution.
+
+---
+
+### XML Tagging
+
+Wrap distinct instruction sections in semantic tags to reduce ambiguity:
+```xml
+<context>Project uses FastAPI + PostgreSQL + React</context>
+<constraints>No breaking changes to existing API</constraints>
+<examples>See tests/test_auth.py for the expected pattern</examples>
+<success_criteria>All tests pass, coverage > 80%</success_criteria>
+```
+When to use: any prompt with 3+ distinct instruction categories. Tags prevent Claude from confusing which instruction governs which behavior.
 
 ---
 

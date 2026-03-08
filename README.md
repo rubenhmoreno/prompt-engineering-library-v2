@@ -13,7 +13,7 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Core |
-| Version  | 2.0.0 |
+| Version  | 2.1.0 |
 | Updated  | 2026-03-08 |
 | Related  | [INDEX.md](INDEX.md), [CONTRIBUTING.md](CONTRIBUTING.md) |
 
@@ -39,7 +39,7 @@
 
 The library provides ready-to-use prompts that configure Claude Code sessions with professional-grade discipline. Instead of ad-hoc instructions, you load a proven prompt and immediately get a session that verifies before acting, writes tests first, delegates to the right specialist, and refuses to mark anything done without real evidence.
 
-It ships with 11 specialist agents, 4 workflows, 3 templates, and 5 core documents. All content is technology-agnostic and designed to remain stable over time.
+It ships with 15 specialist agents, 7 workflows, 3 templates, and 9 core documents. All content is technology-agnostic and designed to remain stable over time.
 
 ### Quick Start
 
@@ -48,11 +48,15 @@ It ships with 11 specialist agents, 4 workflows, 3 templates, and 5 core documen
 # Copy the condensed block from core/base-programming.md and paste it
 # as your first message in Claude Code.
 
-# Option 2: Invoke a specific agent
+# Option 2: Use a slash command (see quick-ref/slash-commands.md)
+/explore                    # Investigate codebase before modifying anything
+/tdd "user registration"    # Run TDD cycle for a feature
+
+# Option 3: Invoke a specific agent
 /task "Act as the backend-developer agent defined in agents/backend-developer.md.
 Implement a REST endpoint for user registration with TDD."
 
-# Option 3: Run a multi-agent workflow
+# Option 4: Run a multi-agent workflow
 /task "Use multi-agent-orchestration workflow:
   - Agent 1 (backend-developer): POST /api/auth/register endpoint + unit tests
   - Agent 2 (frontend-developer): RegisterForm component + component tests
@@ -76,6 +80,10 @@ Implement a REST endpoint for user registration with TDD."
 | `api-architect` | API design, contracts, versioning, OpenAPI specs | API design phase, breaking-change review |
 | `performance-engineer` | Profiling, benchmarking, caching, query optimization | Latency issues, load testing, bottleneck analysis |
 | `cloud-infrastructure` | AWS/GCP/Azure, IaC (Terraform/Pulumi), cost optimization | Cloud provisioning, scaling, cost review |
+| `debugger` | Runtime errors, stack traces, systematic debugging | Crashes, intermittent failures, error diagnosis |
+| `git-workflow-manager` | Branch strategy, commits, PRs, conflict resolution | Git workflow setup, release management |
+| `database-architect` | Schema design, migrations, query optimization, indexing | Database design, slow queries, scaling |
+| `technical-writer` | API docs, ADRs, runbooks, changelogs | Post-implementation documentation |
 
 ### Architecture
 
@@ -88,15 +96,23 @@ prompt-engineering-library-v2/
 |   +-- core/multi-agent-orchestration.md <- Parallel execution framework
 |   +-- core/prompting-techniques.md      <- CoT, Few-Shot, ReAct techniques
 |   +-- core/real-validation.md           <- Evidence rules: no fake "done"
+|   +-- core/prompt-anatomy.md            <- 10-component prompt structure  [NEW]
+|   +-- core/agentic-safety.md            <- Scope, blocklists, checkpoints  [NEW]
+|   +-- core/hooks-guide.md               <- Claude Code lifecycle hooks  [NEW]
+|   +-- core/claudemd-guide.md            <- CLAUDE.md creation guide  [NEW]
 |
 +-- AGENTS (load when you need a specialist)
-|   +-- 11 specialized agents (see roster above)
+|   +-- 15 specialized agents (see roster above)
 |
 +-- WORKFLOWS (orchestrate multi-step processes)
 |   +-- workflows/tdd-workflow.md
 |   +-- workflows/parallel-development.md
 |   +-- workflows/simple-deployment.md    <- Non-technical deploy guide
 |   +-- workflows/verification-protocol.md
+|   +-- workflows/explore-first.md        <- Codebase investigation protocol  [NEW]
+|   +-- workflows/riper-workflow.md       <- Research/Innovate/Plan/Execute/Review  [NEW]
+|   +-- workflows/incident-response.md    <- P0-P3 time-boxed incident handling  [NEW]
+|   +-- workflows/session-memory.md       <- Cross-session continuity patterns  [NEW]
 |
 +-- TEMPLATES (reusable communication formats)
 |   +-- templates/task-decomposition.md
@@ -109,6 +125,7 @@ prompt-engineering-library-v2/
 |   +-- quick-ref/command-reference.md
 |   +-- quick-ref/template-selector.md
 |   +-- quick-ref/ux-checklist.md         <- Non-technical usability review
+|   +-- quick-ref/slash-commands.md       <- 6 ready-to-use /command definitions  [NEW]
 |
 +-- EXAMPLES
     +-- examples/case-study-vox-client.md
@@ -205,7 +222,7 @@ $ curl http://localhost:8000/health
 
 La libreria provee prompts listos para usar que configuran sesiones de Claude Code con disciplina profesional. En lugar de instrucciones improvisadas, cargas un prompt probado y obtienes inmediatamente una sesion que verifica antes de actuar, escribe tests primero, delega al especialista correcto, y se rehusa a marcar algo como terminado sin evidencia real.
 
-Incluye 11 agentes especialistas, 4 workflows, 3 templates y 5 documentos core. Todo el contenido es agnostico de tecnologia y esta disenado para mantenerse estable en el tiempo.
+Incluye 15 agentes especialistas, 7 workflows, 3 templates y 9 documentos core. Todo el contenido es agnostico de tecnologia y esta disenado para mantenerse estable en el tiempo.
 
 ### Inicio Rapido
 
@@ -214,11 +231,15 @@ Incluye 11 agentes especialistas, 4 workflows, 3 templates y 5 documentos core. 
 # Copia el bloque condensado de core/base-programming.md y pegalo
 # como tu primer mensaje en Claude Code.
 
-# Opcion 2: Invocar un agente especifico
+# Opcion 2: Usar un slash command (ver quick-ref/slash-commands.md)
+/explore                    # Investigar el codebase antes de modificar
+/tdd "registro de usuarios" # Ejecutar ciclo TDD para un feature
+
+# Opcion 4: Invocar un agente especifico
 /task "Actua como el agente backend-developer definido en agents/backend-developer.md.
 Implementa un endpoint REST para registro de usuarios con TDD."
 
-# Opcion 3: Ejecutar un workflow multi-agente
+# Opcion 5: Ejecutar un workflow multi-agente
 /task "Usa el workflow multi-agent-orchestration:
   - Agente 1 (backend-developer): endpoint POST /api/auth/register + tests unitarios
   - Agente 2 (frontend-developer): componente RegisterForm + tests de componente
@@ -242,6 +263,10 @@ Implementa un endpoint REST para registro de usuarios con TDD."
 | `api-architect` | Diseno de APIs, contratos, versionado, specs OpenAPI | Fase de diseno de API, review de breaking changes |
 | `performance-engineer` | Profiling, benchmarking, caching, optimizacion de queries | Problemas de latencia, load testing, analisis de cuellos de botella |
 | `cloud-infrastructure` | AWS/GCP/Azure, IaC (Terraform/Pulumi), optimizacion de costos | Aprovisionamiento cloud, escalado, review de costos |
+| `debugger` | Errores de runtime, stack traces, debugging sistematico | Crashes, fallos intermitentes, diagnostico de errores |
+| `git-workflow-manager` | Estrategia de branches, commits, PRs, resolucion de conflictos | Setup de workflow git, gestion de releases |
+| `database-architect` | Diseno de schemas, migraciones, optimizacion de queries, indices | Diseno de base de datos, queries lentas, escalado |
+| `technical-writer` | Docs de API, ADRs, runbooks, changelogs | Documentacion post-implementacion |
 
 ### Cuatro Principios Fundamentales
 
@@ -274,4 +299,4 @@ Un agente, una responsabilidad. Identifica tareas independientes y ejecuta esos 
 
 ---
 
-*Last updated / Ultima actualizacion: 2026-03-08 | Version 2.0.0 | MIT License*
+*Last updated / Ultima actualizacion: 2026-03-08 | Version 2.1.0 | MIT License*

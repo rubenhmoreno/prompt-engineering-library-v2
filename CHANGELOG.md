@@ -5,7 +5,7 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Meta |
-| Version  | 2.0.0 |
+| Version  | 2.1.0 |
 | Updated  | 2026-03-08 |
 | Related  | [CONTRIBUTING.md](CONTRIBUTING.md), [INDEX.md](INDEX.md) |
 
@@ -13,12 +13,37 @@
 
 ## [Unreleased]
 
+---
+
+## [2.1.0] - 2026-03-08
+
 ### Added
 
-- `core/prompting-techniques.md` - Six prompting techniques (CoT, Few-Shot, Step-Back, Self-Consistency, Tree of Thoughts, ReAct) with activation table, software development examples, and agent-technique mapping
-- `workflows/simple-deployment.md` - Non-technical deployment guide (3 methods: manual copy, git pull, auto-deploy)
-- `quick-ref/ux-checklist.md` - Plain-language usability checklist for non-technical users (33-item scoring system)
-- Cross-references integrated across INDEX.md, README.md, base-programming.md, multi-agent-orchestration.md, workflow-decision-tree.md, all-agents-cheatsheet.md, and ui-ux-specialist.md
+- `core/prompt-anatomy.md` - Anthropic's 10-component prompt structure, system vs user prompt separation, session composition guide
+- `core/agentic-safety.md` - Scope definition, action blocklists, human checkpoints for autonomous agent sessions
+- `core/hooks-guide.md` - Claude Code lifecycle hooks: 4 patterns (gate, transformer, side-effect, scanner) with examples
+- `core/claudemd-guide.md` - How to create and maintain CLAUDE.md files for any project
+- `workflows/explore-first.md` - Mandatory codebase investigation protocol before modification
+- `workflows/riper-workflow.md` - Research/Innovate/Plan/Execute/Review constrained phases
+- `workflows/incident-response.md` - Time-boxed incident response with P0-P3 severity levels
+- `workflows/session-memory.md` - Session continuity patterns: Summary.md, checkpoints, cross-session handoff
+- `agents/debugger.md` - Runtime error diagnosis and systematic debugging (separate from data-detective)
+- `agents/git-workflow-manager.md` - Branch strategy, conventional commits, PR workflow
+- `agents/database-architect.md` - Schema design, migrations, query optimization (separate from backend-developer)
+- `agents/technical-writer.md` - API docs, ADRs, runbooks, changelogs
+- `quick-ref/slash-commands.md` - 6 ready-to-use slash command definitions (/tdd, /verify, /explore, /decompose, /security-review, /incident)
+- YAML frontmatter with model-tier and tool permissions on all agent files
+- Named collaboration presets (feature, bugfix, security, performance, refactor, incident) in multi-agent-orchestration.md
+- Orchestrator discipline rules, agent count constraints, concurrent batching, query classification, failure recovery in multi-agent-orchestration.md
+- Extended Thinking and XML Tagging techniques in prompting-techniques.md
+- Problem classification and agent count heuristics in task-decomposition.md
+- Durable decisions block and agent briefing template in agent-handoff.md
+
+### Changed
+
+- All 11 existing agent files now include YAML frontmatter (name, description, tools, model)
+- Version bumped to 2.1.0 across all documents
+- Library now covers 15 agents (was 11), 7 workflows (was 4), 9 core docs (was 5)
 
 ---
 

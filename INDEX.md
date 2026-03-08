@@ -5,7 +5,7 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Reference |
-| Version  | 2.0.0 |
+| Version  | 2.1.0 |
 | Updated  | 2026-03-08 |
 | Related  | [README.md](README.md) |
 
@@ -40,6 +40,9 @@ Who are you in this session? Start with the agents and documents most relevant t
 | API designer | [api-architect](agents/api-architect.md), [backend-developer](agents/backend-developer.md) | [tdd-workflow](workflows/tdd-workflow.md) |
 | Performance engineer | [performance-engineer](agents/performance-engineer.md) | [real-validation](core/real-validation.md), [verification-protocol](workflows/verification-protocol.md) |
 | Tech lead / architect | All agents as orchestrator | [multi-agent-orchestration](core/multi-agent-orchestration.md), [parallel-development](workflows/parallel-development.md) |
+| DBA | [database-architect](agents/database-architect.md) | [tdd-workflow](workflows/tdd-workflow.md), [verification-protocol](workflows/verification-protocol.md) |
+| Tech writer | [technical-writer](agents/technical-writer.md) | [evidence-report](templates/evidence-report.md) |
+| Incident responder | [data-detective](agents/data-detective.md), [backend-developer](agents/backend-developer.md) | [incident-response](workflows/incident-response.md) |
 
 ### Navigate by Task
 
@@ -62,6 +65,15 @@ What are you trying to accomplish right now?
 | Decompose a large task | [task-decomposition](templates/task-decomposition.md) | Tech lead role |
 | Prevent encoding / platform errors | [error-prevention](core/error-prevention.md) | Any |
 | Improve prompt quality for better AI output | [prompting-techniques](core/prompting-techniques.md) | Any |
+| Debug a runtime error | [agents/debugger.md](agents/debugger.md) | data-detective, debugger |
+| Set up git workflow | [agents/git-workflow-manager.md](agents/git-workflow-manager.md) | git-workflow-manager |
+| Design a database schema | [agents/database-architect.md](agents/database-architect.md) | database-architect |
+| Write project documentation | [agents/technical-writer.md](agents/technical-writer.md) | technical-writer |
+| Start a new Claude Code project | [core/claudemd-guide.md](core/claudemd-guide.md) | Any |
+| Respond to production incident | [workflows/incident-response.md](workflows/incident-response.md) | data-detective, backend-developer |
+| Explore unfamiliar codebase | [workflows/explore-first.md](workflows/explore-first.md) | Any |
+| Set up Claude Code hooks | [core/hooks-guide.md](core/hooks-guide.md) | Any |
+| Learn prompt construction | [core/prompt-anatomy.md](core/prompt-anatomy.md) | Any |
 
 ### Navigate by Situation
 
@@ -85,6 +97,13 @@ Something unexpected happened. Which document addresses it?
 | AI gives shallow, wrong, or inconsistent answers | [core/prompting-techniques.md](core/prompting-techniques.md) — Activation Table |
 | Need to choose between multiple valid approaches | [core/prompting-techniques.md](core/prompting-techniques.md) — Tree of Thoughts |
 | Debugging and AI keeps guessing instead of checking | [core/prompting-techniques.md](core/prompting-techniques.md) — ReAct |
+| Agent is modifying code without understanding it first | [workflows/explore-first.md](workflows/explore-first.md) |
+| Agent jumped to implementation before planning | [workflows/riper-workflow.md](workflows/riper-workflow.md) |
+| Production is down | [workflows/incident-response.md](workflows/incident-response.md) |
+| Starting a new project with Claude Code | [core/claudemd-guide.md](core/claudemd-guide.md) |
+| Need to enforce quality automatically | [core/hooks-guide.md](core/hooks-guide.md) |
+| Agent went out of scope during autonomous work | [core/agentic-safety.md](core/agentic-safety.md) |
+| Lost context between sessions | [workflows/session-memory.md](workflows/session-memory.md) |
 
 ### Quick References
 
@@ -97,6 +116,7 @@ Fast one-screen lookups (tables and checklists only, no prose).
 | [Command Reference](quick-ref/command-reference.md) | All essential shell commands by category |
 | [Template Selector](quick-ref/template-selector.md) | Choose the right template for your situation |
 | [UX Checklist](quick-ref/ux-checklist.md) | Plain-language usability review (non-technical) |
+| [Slash Commands](quick-ref/slash-commands.md) | 6 ready-to-use /command definitions |
 
 ---
 
@@ -115,8 +135,12 @@ prompt-engineering-library-v2/
 │   ├── base-programming.md                 Master session prompt (10 principles)
 │   ├── error-prevention.md                 Verification protocol (7 categories)
 │   ├── multi-agent-orchestration.md        Parallel agent coordination
-│   ├── prompting-techniques.md            CoT, Few-Shot, ReAct and more
-│   └── real-validation.md                  Evidence-based reporting rules
+│   ├── prompting-techniques.md             CoT, Few-Shot, ReAct and more
+│   ├── real-validation.md                  Evidence-based reporting rules
+│   ├── prompt-anatomy.md                   10-component prompt structure  [NEW]
+│   ├── agentic-safety.md                   Scope, blocklists, checkpoints  [NEW]
+│   ├── hooks-guide.md                      Claude Code lifecycle hooks  [NEW]
+│   └── claudemd-guide.md                   CLAUDE.md creation and maintenance  [NEW]
 │
 ├── agents/
 │   ├── backend-developer.md                Server-side, APIs, databases
@@ -126,16 +150,24 @@ prompt-engineering-library-v2/
 │   ├── data-analyst.md                     Analysis, visualization, reports
 │   ├── data-detective.md                   Root-cause, anomaly, log forensics
 │   ├── ui-ux-specialist.md                 Design, accessibility, UX specs
-│   ├── security-auditor.md                 Threat modeling, OWASP, CVE  [NEW]
-│   ├── api-architect.md                    API design, contracts, versioning  [NEW]
-│   ├── performance-engineer.md             Profiling, benchmarking, caching  [NEW]
-│   └── cloud-infrastructure.md             AWS/GCP/Azure, IaC, cost  [NEW]
+│   ├── security-auditor.md                 Threat modeling, OWASP, CVE
+│   ├── api-architect.md                    API design, contracts, versioning
+│   ├── performance-engineer.md             Profiling, benchmarking, caching
+│   ├── cloud-infrastructure.md             AWS/GCP/Azure, IaC, cost
+│   ├── debugger.md                         Runtime errors, systematic debugging  [NEW]
+│   ├── git-workflow-manager.md             Branch strategy, commits, PRs  [NEW]
+│   ├── database-architect.md               Schema design, migrations, queries  [NEW]
+│   └── technical-writer.md                 API docs, ADRs, runbooks  [NEW]
 │
 ├── workflows/
 │   ├── tdd-workflow.md                     Red-Green-Refactor cycle
 │   ├── parallel-development.md             Multi-agent parallel execution
 │   ├── simple-deployment.md                Non-technical deploy guide
-│   └── verification-protocol.md            Evidence collection protocol
+│   ├── verification-protocol.md            Evidence collection protocol
+│   ├── explore-first.md                    Codebase investigation protocol  [NEW]
+│   ├── riper-workflow.md                   Research/Innovate/Plan/Execute/Review  [NEW]
+│   ├── incident-response.md                P0-P3 time-boxed incident handling  [NEW]
+│   └── session-memory.md                   Cross-session continuity patterns  [NEW]
 │
 ├── templates/
 │   ├── task-decomposition.md               Break large tasks into agent work
@@ -147,11 +179,12 @@ prompt-engineering-library-v2/
 │   └── best-practices-learned.md           Lessons from production experience
 │
 ├── quick-ref/
-│   ├── all-agents-cheatsheet.md            All 11 agents at a glance
+│   ├── all-agents-cheatsheet.md            All 15 agents at a glance
 │   ├── workflow-decision-tree.md           Choose the right workflow
 │   ├── command-reference.md                Shell commands by category
-│   ├── template-selector.md               Choose the right template
-│   └── ux-checklist.md                    Plain-language usability review
+│   ├── template-selector.md                Choose the right template
+│   ├── ux-checklist.md                     Plain-language usability review
+│   └── slash-commands.md                   6 ready-to-use /command definitions  [NEW]
 │
 └── archive/
     └── v1-spanish/                         Original Spanish v1 source files

@@ -177,6 +177,48 @@ curl -X POST http://localhost:8000/api/auth/login \
 
 ---
 
+### Orchestrator Discipline
+
+The orchestrator coordinates, classifies, and synthesizes — it NEVER does primary implementation or research itself. If the orchestrator starts writing code or investigating bugs directly, it has lost its bird's-eye view. The orchestrator's only outputs are: task assignments, sync-point evaluations, and final integration reports.
+
+### Named Collaboration Presets
+
+| Task Type | Agent Chain | Notes |
+|-----------|------------|-------|
+| Feature | api-architect → backend-developer + frontend-developer (parallel) → testing-engineer → devops-engineer | Backend+frontend parallel only if API contract frozen |
+| Bugfix | data-detective → backend-developer → testing-engineer | Time-box diagnosis to 30 min |
+| Security Audit | security-auditor → backend-developer (remediate) → testing-engineer (verify) → devops-engineer (CI gates) | Sequential only |
+| Performance | performance-engineer → backend-developer → testing-engineer → devops-engineer | Profile before optimizing |
+| Refactor | api-architect (review) → backend-developer → testing-engineer | Never refactor without tests first |
+| Incident | data-detective → backend-developer → testing-engineer → devops-engineer | See workflows/incident-response.md |
+
+### Agent Count Constraints
+
+Maximum 6 active agents simultaneously per phase. Beyond 6, coordination overhead exceeds parallelization gains and goal divergence increases. If your task requires more than 6 concurrent agents, split it into sequential phases rather than expanding the parallel group.
+
+### Concurrent Batching Rule
+
+Spawn all agents for a phase in a single message with complete instructions. Do not spawn agents one at a time and wait between them. Once a plan is formed, deploy agents in the same response — do not plan in turn N and spawn in turn N+1.
+
+### Query Classification
+
+Before decomposing a task, classify its type:
+- **Depth-first**: One question explored from multiple angles. Spawn agents with DIFFERENT constraint sets on the SAME subject (e.g., 'argue for PostgreSQL' vs 'argue for MongoDB'). Synthesizer reconciles.
+- **Breadth-first**: Multiple independent sub-questions. Spawn agents each owning ONE distinct stream. Standard parallel execution.
+- **Straightforward**: Focused, self-contained. Single capable agent. No orchestration overhead needed.
+
+### Agent Failure Recovery
+
+When an agent fails mid-execution:
+1. **Retry** with the same scope (transient failure)
+2. **Simplify** — reduce the agent's scope and retry
+3. **Escalate** to orchestrator — reassign to a different agent or approach
+4. **Checkpoint resume** — save completed work, restart from the last verified state
+
+Never restart a 5-agent workflow from zero because one agent failed.
+
+---
+
 ## Anti-Patterns
 
 | Wrong | Right | Why |

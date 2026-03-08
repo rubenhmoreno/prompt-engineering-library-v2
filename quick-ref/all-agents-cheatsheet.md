@@ -1,11 +1,11 @@
 # All Agents Cheatsheet
 
-> **Executive Summary:** Single-page reference for all 11 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
+> **Executive Summary:** Single-page reference for all 15 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
 
 | Metadata | Value |
 |----------|-------|
 | Type     | Reference |
-| Version  | 2.0.0 |
+| Version  | 2.1.0 |
 | Updated  | 2026-03-08 |
 | Related  | [Workflow Decision Tree](workflow-decision-tree.md), [Template Selector](template-selector.md) |
 
@@ -26,6 +26,10 @@
 | **api-architect** | API design, versioning strategy, contract-first design, documentation | Designing new APIs or overhauling existing ones before coding begins | OpenAPI spec, API style guide, versioning plan | OpenAPI/Swagger, Postman, API design principles | [agents/api-architect.md](../agents/api-architect.md) |
 | **performance-engineer** | Profiling, bottleneck analysis, caching, query optimization | Diagnosing slow responses, reducing resource usage, setting performance budgets | Profiling report, optimized code, benchmark results | cProfile, k6, pg_explain, Redis, CDN configs | [agents/performance-engineer.md](../agents/performance-engineer.md) |
 | **cloud-infrastructure** | Cloud resources, IaC, Kubernetes, networking, cost management | Provisioning infrastructure, managing K8s clusters, writing Terraform/Helm | IaC templates, network diagrams, cost estimates | Terraform, Helm, kubectl, AWS/GCP/Azure CLIs | [agents/cloud-infrastructure.md](../agents/cloud-infrastructure.md) |
+| **debugger** | Runtime errors, stack traces, systematic debugging | Crashes, intermittent failures, error reproduction, stack trace analysis | Root cause analysis, fix recommendation, regression test | pdb, node --inspect, gdb, logging tools | [agents/debugger.md](../agents/debugger.md) |
+| **git-workflow-manager** | Branch strategy, commits, PRs, conflict resolution | Setting up git workflow, managing releases, resolving merge conflicts | Branch strategy doc, commit conventions, PR templates | git, gh CLI, conventional commits | [agents/git-workflow-manager.md](../agents/git-workflow-manager.md) |
+| **database-architect** | Schema design, migrations, query optimization, indexing | Designing schemas, planning migrations, optimizing slow queries | Migration files, index recommendations, schema docs | PostgreSQL, EXPLAIN ANALYZE, PgBouncer | [agents/database-architect.md](../agents/database-architect.md) |
+| **technical-writer** | API docs, ADRs, runbooks, changelogs | Post-implementation documentation, operational runbooks, decision records | API reference, ADRs, runbooks, changelogs | OpenAPI, MkDocs, Sphinx, JSDoc | [agents/technical-writer.md](../agents/technical-writer.md) |
 
 ---
 
@@ -67,7 +71,19 @@ What is the primary goal?
 |       --> performance-engineer
 |
 +-- Provisioning cloud resources, Kubernetes, IaC?
-        --> cloud-infrastructure
+|       --> cloud-infrastructure
+|
++-- Debugging a runtime error, crash, or intermittent failure?
+|       --> debugger
+|
++-- Setting up git workflow, branches, or resolving conflicts?
+|       --> git-workflow-manager
+|
++-- Designing database schema, optimizing queries, planning migrations?
+|       --> database-architect
+|
++-- Writing documentation, ADRs, runbooks, or changelogs?
+        --> technical-writer
 ```
 
 ### Overlap Resolution
@@ -82,6 +98,10 @@ Some tasks sit at the boundary between agents. Use these rules:
 | Cloud deployment with CI/CD | devops-engineer | cloud-infrastructure (if K8s/IaC involved) |
 | Data bug in production | data-detective (diagnose) | data-analyst (fix pipeline) |
 | UX design + accessibility | ui-ux-specialist | testing-engineer (a11y tests) |
+| Runtime error in backend code | debugger (diagnose) | backend-developer (fix) |
+| Database schema + API design | database-architect (schema first) | backend-developer (implement) |
+| Slow database queries | database-architect (optimize) | performance-engineer (profile) |
+| Post-feature documentation | technical-writer | api-architect (API docs review) |
 
 ### Multi-Agent Activation
 
@@ -109,6 +129,10 @@ When a task clearly spans multiple domains, use the [Parallel Development workfl
 | api-architect | Medium | High | Medium | Low | Medium |
 | performance-engineer | High | Low | High | Medium | Low |
 | cloud-infrastructure | Medium | Medium | Low | High | Medium |
+| debugger | Medium | Low | High | Low | Low |
+| git-workflow-manager | Low | Low | Low | Medium | Low |
+| database-architect | High | Medium | High | Low | Medium |
+| technical-writer | Low | Medium | Low | Low | Low |
 
 ---
 
@@ -129,6 +153,10 @@ Use the right technique to get the best output from each agent. See [core/prompt
 | api-architect | Step-Back + ToT | Principles first, then explore design options |
 | performance-engineer | ReAct + CoT | Profile with real data, reason about bottlenecks |
 | cloud-infrastructure | ToT + ReAct | Evaluate cloud options, verify with IaC plan |
+| debugger | ReAct + CoT | Observe-hypothesize-test cycle, systematic elimination |
+| git-workflow-manager | Few-Shot | Consistent commit formats, PR templates |
+| database-architect | Step-Back + CoT | Principles first, then reason through schema decisions |
+| technical-writer | Few-Shot | Consistent documentation formats and patterns |
 
 ---
 
