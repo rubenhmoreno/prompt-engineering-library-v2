@@ -112,8 +112,29 @@ When a task clearly spans multiple domains, use the [Parallel Development workfl
 
 ---
 
+## Recommended Prompting Technique by Agent
+
+Use the right technique to get the best output from each agent. See [core/prompting-techniques.md](../core/prompting-techniques.md) for full details.
+
+| Agent | Primary Technique | When to Apply |
+|-------|-------------------|---------------|
+| backend-developer | Few-Shot | Consistent API patterns, CRUD generation |
+| frontend-developer | Few-Shot | Component structure consistency |
+| testing-engineer | Few-Shot + CoT | Test pattern reuse + edge case reasoning |
+| devops-engineer | ReAct | Must verify infrastructure state before acting |
+| data-analyst | CoT | Step-by-step data analysis reasoning |
+| data-detective | ReAct + CoT | Investigate with evidence, reason about anomalies |
+| ui-ux-specialist | Step-Back | Design principles before specific UI decisions |
+| security-auditor | Self-Consistency + ReAct | Multi-angle threat analysis, verify with tools |
+| api-architect | Step-Back + ToT | Principles first, then explore design options |
+| performance-engineer | ReAct + CoT | Profile with real data, reason about bottlenecks |
+| cloud-infrastructure | ToT + ReAct | Evaluate cloud options, verify with IaC plan |
+
+---
+
 ## Related Documents
 
+- [Prompting Techniques](../core/prompting-techniques.md) - Improve AI output quality per agent
 - [Workflow Decision Tree](workflow-decision-tree.md) - Choose the right workflow
 - [Template Selector](template-selector.md) - Choose the right template
 - [Command Reference](command-reference.md) - Verification commands by category

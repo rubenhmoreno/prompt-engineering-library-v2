@@ -13,6 +13,11 @@
 
 ## [Unreleased]
 
+### Added
+
+- `core/prompting-techniques.md` - Six prompting techniques (CoT, Few-Shot, Step-Back, Self-Consistency, Tree of Thoughts, ReAct) with activation table, software development examples, and agent-technique mapping
+- Cross-references to prompting-techniques.md in INDEX.md, README.md, base-programming.md, multi-agent-orchestration.md, and workflow-decision-tree.md
+
 ---
 
 ## [2.0.0] - 2026-03-08

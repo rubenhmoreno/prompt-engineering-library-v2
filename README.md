@@ -20,6 +20,7 @@
 | Run tasks in parallel | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |
 | Prevent common errors | [core/error-prevention.md](core/error-prevention.md) |
 | Validate completed work | [core/real-validation.md](core/real-validation.md) |
+| Improve prompt quality | [core/prompting-techniques.md](core/prompting-techniques.md) |
 | Navigate everything | [INDEX.md](INDEX.md) |
 
 ---
@@ -77,6 +78,7 @@ prompt-engineering-library-v2/
 │   ├── core/base-programming.md       <- Master prompt: 10 principles + workflows
 │   ├── core/error-prevention.md       <- Verification protocol: 7 categories
 │   ├── core/multi-agent-orchestration.md  <- Parallel execution framework
+│   ├── core/prompting-techniques.md      <- CoT, Few-Shot, ReAct techniques
 │   └── core/real-validation.md        <- Evidence rules: no fake "done"
 │
 ├── AGENTS (load when you need a specialist)
@@ -189,6 +191,7 @@ $ curl http://localhost:8000/health
 - [core/base-programming.md](core/base-programming.md) — Master session prompt
 - [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) — Parallel agent coordination
 - [core/error-prevention.md](core/error-prevention.md) — Verification protocol
+- [core/prompting-techniques.md](core/prompting-techniques.md) — CoT, Few-Shot, ReAct and more
 - [core/real-validation.md](core/real-validation.md) — Evidence standards
 - [CONTRIBUTING.md](CONTRIBUTING.md) — How to contribute
 - [LICENSE](LICENSE) — MIT License

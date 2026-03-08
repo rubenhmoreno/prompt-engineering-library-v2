@@ -27,6 +27,10 @@ What do you need to do?
 +-- Prove that existing work is complete and correct?
 |       --> Verification Protocol
 |
++-- AI output is shallow, wrong, or inconsistent?
+|       --> Apply a Prompting Technique (CoT, Few-Shot, ReAct...)
+|           See core/prompting-techniques.md Activation Table
+|
 +-- Combination of all three?
         --> Start with Parallel Development,
             apply TDD inside each track,
@@ -38,6 +42,7 @@ What do you need to do?
 - **Writing code** → TDD Workflow
 - **Multiple agents working together** → Parallel Development
 - **Proving completion to a stakeholder** → Verification Protocol
+- **AI gives bad output** → Prompting Techniques (CoT, Few-Shot, Step-Back, ReAct)
 
 ---
 
@@ -169,6 +174,7 @@ Phase 3: Completion
 - [TDD Workflow](../workflows/tdd-workflow.md) - Full TDD documentation
 - [Parallel Development](../workflows/parallel-development.md) - Full parallel workflow
 - [Verification Protocol](../workflows/verification-protocol.md) - Full verification documentation
+- [Prompting Techniques](../core/prompting-techniques.md) - Improve AI output quality
 - [INDEX.md](../INDEX.md) - Master navigation
 
 *Last updated: 2026-03-08 | [Back to Index](../INDEX.md)*

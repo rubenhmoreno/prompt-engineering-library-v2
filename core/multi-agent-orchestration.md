@@ -7,7 +7,7 @@
 | Type     | Core |
 | Version  | 2.0.0 |
 | Updated  | 2026-03-08 |
-| Related  | [base-programming.md](base-programming.md), [workflows/parallel-development.md](../workflows/parallel-development.md), [templates/agent-handoff.md](../templates/agent-handoff.md) |
+| Related  | [base-programming.md](base-programming.md), [prompting-techniques.md](prompting-techniques.md), [workflows/parallel-development.md](../workflows/parallel-development.md), [templates/agent-handoff.md](../templates/agent-handoff.md) |
 
 ---
 
@@ -192,6 +192,7 @@ curl -X POST http://localhost:8000/api/auth/login \
 ## Related Documents
 
 - [core/base-programming.md](base-programming.md) — Master session prompt with parallel execution principle
+- [core/prompting-techniques.md](prompting-techniques.md) — Each agent benefits from specific techniques (see agent-technique matrix)
 - [workflows/parallel-development.md](../workflows/parallel-development.md) — Detailed parallel workflow with git worktrees
 - [templates/agent-handoff.md](../templates/agent-handoff.md) — Standard handoff document format
 - [templates/task-decomposition.md](../templates/task-decomposition.md) — How to break large tasks into agent assignments

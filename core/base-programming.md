@@ -7,7 +7,7 @@
 | Type     | Core |
 | Version  | 2.0.0 |
 | Updated  | 2026-03-08 |
-| Related  | [error-prevention.md](error-prevention.md), [real-validation.md](real-validation.md), [multi-agent-orchestration.md](multi-agent-orchestration.md) |
+| Related  | [error-prevention.md](error-prevention.md), [real-validation.md](real-validation.md), [multi-agent-orchestration.md](multi-agent-orchestration.md), [prompting-techniques.md](prompting-techniques.md) |
 
 ---
 
@@ -206,6 +206,7 @@ Every feature must satisfy all items before being marked done:
 
 ## Related Documents
 
+- [core/prompting-techniques.md](prompting-techniques.md) — CoT, Few-Shot, ReAct: improve prompt quality for complex tasks
 - [core/error-prevention.md](error-prevention.md) — 7-category verification checklist
 - [core/real-validation.md](real-validation.md) — Evidence standards and reporting format
 - [core/multi-agent-orchestration.md](multi-agent-orchestration.md) — Parallel agent coordination

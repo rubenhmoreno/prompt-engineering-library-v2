@@ -59,6 +59,7 @@ What are you trying to accomplish right now?
 | Report completion of a task | [evidence-report](templates/evidence-report.md) | Any |
 | Decompose a large task | [task-decomposition](templates/task-decomposition.md) | Tech lead role |
 | Prevent encoding / platform errors | [error-prevention](core/error-prevention.md) | Any |
+| Improve prompt quality for better AI output | [prompting-techniques](core/prompting-techniques.md) | Any |
 
 ### Navigate by Situation
 
@@ -77,6 +78,9 @@ Something unexpected happened. Which document addresses it?
 | Not sure what changed between versions | [core/error-prevention.md](core/error-prevention.md) — Section 6 |
 | Deployment went wrong and rollback needed | [agents/devops-engineer.md](agents/devops-engineer.md) |
 | Security vulnerability discovered post-deploy | [agents/security-auditor.md](agents/security-auditor.md) |
+| AI gives shallow, wrong, or inconsistent answers | [core/prompting-techniques.md](core/prompting-techniques.md) — Activation Table |
+| Need to choose between multiple valid approaches | [core/prompting-techniques.md](core/prompting-techniques.md) — Tree of Thoughts |
+| Debugging and AI keeps guessing instead of checking | [core/prompting-techniques.md](core/prompting-techniques.md) — ReAct |
 
 ### Quick References
 
@@ -106,6 +110,7 @@ prompt-engineering-library-v2/
 │   ├── base-programming.md                 Master session prompt (10 principles)
 │   ├── error-prevention.md                 Verification protocol (7 categories)
 │   ├── multi-agent-orchestration.md        Parallel agent coordination
+│   ├── prompting-techniques.md            CoT, Few-Shot, ReAct and more
 │   └── real-validation.md                  Evidence-based reporting rules
 │
 ├── agents/
