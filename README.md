@@ -23,6 +23,7 @@
 
 | Want to... | Go to |
 |------------|-------|
+| Instruir a la IA con el repo | Copiar el prompt de [STANDARD_PROMPT.md](STANDARD_PROMPT.md) + URL del repo |
 | Activate the full methodology | Copy a prompt from [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variants) |
 | Start a new session | Copy [core/base-programming.md](core/base-programming.md) condensed prompt |
 | Use a specialist agent | See Agent Roster below, then open `agents/<name>.md` |
@@ -207,6 +208,7 @@ $ curl http://localhost:8000/health
 
 | Quiero... | Ir a |
 |-----------|------|
+| Instruir a la IA con el repo | Copiar el prompt de [STANDARD_PROMPT.md](STANDARD_PROMPT.md) + URL del repo |
 | Activar toda la metodologia | Copiar un prompt de [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variantes) |
 | Iniciar una nueva sesion | Copiar el prompt condensado de [core/base-programming.md](core/base-programming.md) |
 | Usar un agente especialista | Ver la tabla de agentes abajo, luego abrir `agents/<nombre>.md` |
