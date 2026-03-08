@@ -8,7 +8,7 @@
 
 ## English
 
-> **Executive Summary:** A modular library of specialized prompts and agent definitions for professional software development with Claude Code. It enforces four non-negotiable principles — verify before acting, test-driven development, multi-agent specialization, and evidence-based reporting — so that every Claude Code session produces reliable, auditable results.
+> **Executive Summary:** A modular library of specialized prompts and agent definitions for professional software development with AI. It enforces four non-negotiable principles — verify before acting, test-driven development, multi-agent specialization, and evidence-based reporting — so that every AI session produces reliable, auditable results.
 
 | Metadata | Value |
 |----------|-------|
@@ -19,13 +19,123 @@
 
 ---
 
+### How to Use This Library
+
+**Copy the prompt below and paste it as the first message in any AI session** (Claude Code, Claude.ai, ChatGPT, Gemini, or any LLM). Then give it your specific task.
+
+#### Standard Prompt (copy and paste)
+
+```
+Read the professional development methodology at:
+https://github.com/rubenhmoreno/prompt-engineering-library-v2
+
+Read these files in order:
+1. README.md — general structure and principles
+2. core/base-programming.md — 10 non-negotiable principles
+3. core/prompt-anatomy.md — how to structure your reasoning
+4. core/multi-agent-orchestration.md — how to coordinate complex tasks
+
+NON-NEGOTIABLE RULES (apply ALWAYS):
+- VERIFY before acting: never assume files exist, services are running, or ports
+  are free. Run actual commands (ls, which, curl) before every action.
+- TDD mandatory: write the failing test FIRST (RED), then minimum code to pass
+  (GREEN), then improve without breaking tests (REFACTOR). Coverage >80%.
+- EVIDENCE mandatory: every completed task must have real terminal output, test
+  results, or curl responses. "It works" without proof = not done.
+- EXPLORE before modifying: before changing any code, read the project structure,
+  key files, and existing conventions.
+- SECURITY by default: secrets in env vars, parameterized queries, input
+  validation. Never hardcode credentials.
+
+STANDARD WORKFLOW:
+Explore codebase → Decompose into tasks → Define contracts/interfaces →
+Test (RED) → Implement (GREEN) → Refactor → Run full test suite →
+Produce evidence → Document changes
+
+FOR COMPLEX TASKS:
+1. Classify: one question with multiple angles (depth-first), multiple independent
+   subtasks (breadth-first), or single focused task (straightforward)?
+2. Select agents from the catalog (see agents/ in the repo):
+   backend-developer, frontend-developer, testing-engineer, devops-engineer,
+   data-analyst, data-detective, debugger, database-architect,
+   security-auditor, api-architect, performance-engineer, cloud-infrastructure,
+   ui-ux-specialist, git-workflow-manager, technical-writer
+3. Use collaboration presets:
+   - Feature: api-architect → backend + frontend (parallel) → testing → devops
+   - Bugfix: debugger → backend → testing
+   - Security: security-auditor → backend → testing → devops
+   - Incident: data-detective(30m) → backend(60m) → testing(30m) → devops
+4. Max 6 simultaneous agents per phase
+5. Each agent produces evidence before handoff
+
+WHEN ERRORS OCCUR:
+Read the full error → Verify context (file? service? port?) →
+Write a test that reproduces the error → Apply minimum fix →
+Confirm no regressions → Document root cause
+
+QUALITY GATES (before marking done):
+- [ ] Tests pass with >80% coverage
+- [ ] Linting clean (zero errors)
+- [ ] Type checking clean
+- [ ] Endpoints respond (show curl output)
+- [ ] Conventional commits (feat/fix/docs/refactor/test)
+- [ ] Evidence produced (real output, not assertions)
+
+When stuck: stop guessing → verify state with commands → form hypothesis →
+test it → fix.
+
+Confirm you have read the methodology and are ready for instructions.
+```
+
+#### Short Version (for quick sessions)
+
+```
+Read the methodology at https://github.com/rubenhmoreno/prompt-engineering-library-v2
+(especially README.md, core/base-programming.md and core/multi-agent-orchestration.md).
+
+Rules: verify before acting, TDD always (RED→GREEN→REFACTOR, coverage >80%),
+mandatory evidence (real terminal output), explore before modifying,
+security by default (secrets in env vars).
+
+Workflow: Explore → Decompose → Contracts → Test → Implement → Refactor → Evidence
+
+Confirm you have read it and are ready.
+```
+
+#### Usage Example
+
+**Step 1:** Paste the prompt above
+
+**Step 2:** The AI confirms it read the methodology
+
+**Step 3:** Give your specific instruction:
+```
+I need a support ticket management web app.
+Stack: Python FastAPI + PostgreSQL + React.
+Features:
+- Login with roles (admin, agent, user)
+- Ticket CRUD with priority and status
+- Dashboard with metrics
+- REST API documented with OpenAPI
+
+Start with the database design and the API.
+```
+
+The AI will automatically:
+1. Explore if there is existing code
+2. Classify as breadth-first (multiple subtasks)
+3. Assign: database-architect → api-architect → backend + frontend (parallel) → testing
+4. Apply TDD at each phase
+5. Produce evidence at every delivery
+
+---
+
 ### Quick Reference Card
 
 | Want to... | Go to |
 |------------|-------|
-| Instruir a la IA con el repo | Copiar el prompt de [STANDARD_PROMPT.md](STANDARD_PROMPT.md) + URL del repo |
-| Activate the full methodology | Copy a prompt from [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variants) |
-| Start a new session | Copy [core/base-programming.md](core/base-programming.md) condensed prompt |
+| Bootstrap any AI session with this methodology | Copy the prompt above |
+| Activate without repo URL (self-contained) | [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variants) |
 | Use a specialist agent | See Agent Roster below, then open `agents/<name>.md` |
 | Run tasks in parallel | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |
 | Prevent common errors | [core/error-prevention.md](core/error-prevention.md) |
@@ -39,33 +149,9 @@
 
 ### What This Library Is
 
-The library provides ready-to-use prompts that configure Claude Code sessions with professional-grade discipline. Instead of ad-hoc instructions, you load a proven prompt and immediately get a session that verifies before acting, writes tests first, delegates to the right specialist, and refuses to mark anything done without real evidence.
+The library provides ready-to-use prompts that configure AI sessions with professional-grade discipline. Instead of ad-hoc instructions, you load a proven prompt and immediately get a session that verifies before acting, writes tests first, delegates to the right specialist, and refuses to mark anything done without real evidence.
 
 It ships with 15 specialist agents, 7 workflows, 3 templates, and 9 core documents. All content is technology-agnostic and designed to remain stable over time.
-
-### Quick Start
-
-```bash
-# Option 1: Load the base prompt at session start
-# Copy the condensed block from core/base-programming.md and paste it
-# as your first message in Claude Code.
-
-# Option 2: Use a slash command (see quick-ref/slash-commands.md)
-/explore                    # Investigate codebase before modifying anything
-/tdd "user registration"    # Run TDD cycle for a feature
-
-# Option 3: Invoke a specific agent
-/task "Act as the backend-developer agent defined in agents/backend-developer.md.
-Implement a REST endpoint for user registration with TDD."
-
-# Option 4: Run a multi-agent workflow
-/task "Use multi-agent-orchestration workflow:
-  - Agent 1 (backend-developer): POST /api/auth/register endpoint + unit tests
-  - Agent 2 (frontend-developer): RegisterForm component + component tests
-  - Agent 3 (testing-engineer): E2E test for full registration flow
-  Run Agent 1 and Agent 2 in parallel. Run Agent 3 after both complete.
-  Each agent must produce evidence before handoff."
-```
 
 ### Agent Roster
 
@@ -92,16 +178,19 @@ Implement a REST endpoint for user registration with TDD."
 ```
 prompt-engineering-library-v2/
 |
++-- STANDARD_PROMPT.md              <- Universal prompt (repo URL + methodology)
++-- ACTIVATION_PROMPT.md            <- Self-contained prompts (3 variants)
+|
 +-- CORE (start here every session)
 |   +-- core/base-programming.md          <- Master prompt: 10 principles + workflows
 |   +-- core/error-prevention.md          <- Verification protocol: 7 categories
 |   +-- core/multi-agent-orchestration.md <- Parallel execution framework
 |   +-- core/prompting-techniques.md      <- CoT, Few-Shot, ReAct techniques
 |   +-- core/real-validation.md           <- Evidence rules: no fake "done"
-|   +-- core/prompt-anatomy.md            <- 10-component prompt structure  [NEW]
-|   +-- core/agentic-safety.md            <- Scope, blocklists, checkpoints  [NEW]
-|   +-- core/hooks-guide.md               <- Claude Code lifecycle hooks  [NEW]
-|   +-- core/claudemd-guide.md            <- CLAUDE.md creation guide  [NEW]
+|   +-- core/prompt-anatomy.md            <- 10-component prompt structure
+|   +-- core/agentic-safety.md            <- Scope, blocklists, checkpoints
+|   +-- core/hooks-guide.md               <- Claude Code lifecycle hooks
+|   +-- core/claudemd-guide.md            <- CLAUDE.md creation guide
 |
 +-- AGENTS (load when you need a specialist)
 |   +-- 15 specialized agents (see roster above)
@@ -111,10 +200,10 @@ prompt-engineering-library-v2/
 |   +-- workflows/parallel-development.md
 |   +-- workflows/simple-deployment.md    <- Non-technical deploy guide
 |   +-- workflows/verification-protocol.md
-|   +-- workflows/explore-first.md        <- Codebase investigation protocol  [NEW]
-|   +-- workflows/riper-workflow.md       <- Research/Innovate/Plan/Execute/Review  [NEW]
-|   +-- workflows/incident-response.md    <- P0-P3 time-boxed incident handling  [NEW]
-|   +-- workflows/session-memory.md       <- Cross-session continuity patterns  [NEW]
+|   +-- workflows/explore-first.md        <- Codebase investigation protocol
+|   +-- workflows/riper-workflow.md       <- Research/Innovate/Plan/Execute/Review
+|   +-- workflows/incident-response.md    <- P0-P3 time-boxed incident handling
+|   +-- workflows/session-memory.md       <- Cross-session continuity patterns
 |
 +-- TEMPLATES (reusable communication formats)
 |   +-- templates/task-decomposition.md
@@ -127,7 +216,7 @@ prompt-engineering-library-v2/
 |   +-- quick-ref/command-reference.md
 |   +-- quick-ref/template-selector.md
 |   +-- quick-ref/ux-checklist.md         <- Non-technical usability review
-|   +-- quick-ref/slash-commands.md       <- 6 ready-to-use /command definitions  [NEW]
+|   +-- quick-ref/slash-commands.md       <- 6 ready-to-use /command definitions
 |
 +-- EXAMPLES
     +-- examples/case-study-vox-client.md
@@ -180,14 +269,28 @@ $ pytest tests/ -v --cov=app
 15 passed, coverage: 94%
 
 $ curl http://localhost:8000/health
-{"status": "healthy", "version": "2.0.0"}
+{"status": "healthy", "version": "2.1.0"}
 ```
+
+---
+
+### Where to Use the Standard Prompt
+
+| Platform | How to load |
+|----------|-------------|
+| Claude Code (terminal) | Paste as first message, or save to `~/.claude/system-prompt.md` and run `claude --append-system-prompt-file ~/.claude/system-prompt.md` |
+| Claude.ai (web) | Paste as first message in the chat |
+| Claude API | Send as `system` message in the first request |
+| Other LLMs (GPT, Gemini, etc.) | Paste as first message — the methodology is model-agnostic |
+| Project CLAUDE.md | Copy the non-negotiable rules to your repo's CLAUDE.md |
 
 ---
 
 ### Related Documents
 
 - [INDEX.md](INDEX.md) — Full navigation by role, task, and situation
+- [STANDARD_PROMPT.md](STANDARD_PROMPT.md) — Full prompt document with all variants
+- [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) — Self-contained prompts (no repo URL needed)
 - [core/base-programming.md](core/base-programming.md) — Master session prompt
 - [core/prompting-techniques.md](core/prompting-techniques.md) — CoT, Few-Shot, ReAct and more
 - [core/real-validation.md](core/real-validation.md) — Evidence standards
@@ -200,7 +303,120 @@ $ curl http://localhost:8000/health
 
 ## Espanol
 
-> **Resumen Ejecutivo:** Una libreria modular de prompts especializados y definiciones de agentes para desarrollo profesional de software con Claude Code. Aplica cuatro principios innegociables: verificar antes de actuar, desarrollo guiado por tests, especializacion multi-agente, y reportes basados en evidencia, para que cada sesion de Claude Code produzca resultados confiables y auditables.
+> **Resumen Ejecutivo:** Una libreria modular de prompts especializados y definiciones de agentes para desarrollo profesional de software con IA. Aplica cuatro principios innegociables: verificar antes de actuar, desarrollo guiado por tests, especializacion multi-agente, y reportes basados en evidencia, para que cada sesion de IA produzca resultados confiables y auditables.
+
+---
+
+### Como usar esta libreria
+
+**Copia el prompt de abajo y pegalo como primer mensaje en cualquier sesion de IA** (Claude Code, Claude.ai, ChatGPT, Gemini, o cualquier LLM). Despues dale tu tarea especifica.
+
+#### Prompt Estandar (copiar y pegar)
+
+```
+Lee la metodologia de desarrollo profesional en:
+https://github.com/rubenhmoreno/prompt-engineering-library-v2
+
+Lee estos archivos en orden:
+1. README.md — estructura general y principios
+2. core/base-programming.md — 10 principios innegociables
+3. core/prompt-anatomy.md — como estructurar tu razonamiento
+4. core/multi-agent-orchestration.md — como coordinar tareas complejas
+
+REGLAS NO NEGOCIABLES (aplicar SIEMPRE):
+- VERIFICAR antes de actuar: nunca asumas que un archivo existe, un servicio
+  corre, o un puerto esta libre. Ejecuta comandos reales (ls, which, curl)
+  antes de cada accion.
+- TDD obligatorio: escribe el test que falla PRIMERO (ROJO), despues el codigo
+  minimo para que pase (VERDE), despues mejora sin romper tests (REFACTORIZAR).
+  Cobertura >80%.
+- EVIDENCIA obligatoria: cada tarea completada debe tener output real de terminal,
+  resultados de tests, o respuestas de curl. "Funciona" sin pruebas = no terminado.
+- EXPLORAR antes de modificar: antes de cambiar cualquier codigo, lee la estructura
+  del proyecto, archivos clave y convenciones existentes.
+- SEGURIDAD por defecto: secrets en variables de entorno, queries parametrizadas,
+  validacion de input. Nunca hardcodear credenciales.
+
+WORKFLOW ESTANDAR:
+Explorar codebase → Descomponer en tareas → Definir contratos/interfaces →
+Test (ROJO) → Implementar (VERDE) → Refactorizar → Ejecutar suite completa →
+Producir evidencia → Documentar cambios
+
+PARA TAREAS COMPLEJAS:
+1. Clasificar: ¿es una pregunta con multiples angulos (depth-first), multiples
+   subtareas independientes (breadth-first), o una tarea directa (straightforward)?
+2. Seleccionar agentes del catalogo (ver agents/ en el repo):
+   backend-developer, frontend-developer, testing-engineer, devops-engineer,
+   data-analyst, data-detective, debugger, database-architect,
+   security-auditor, api-architect, performance-engineer, cloud-infrastructure,
+   ui-ux-specialist, git-workflow-manager, technical-writer
+3. Usar presets de colaboracion:
+   - Feature: api-architect → backend + frontend (paralelo) → testing → devops
+   - Bugfix: debugger → backend → testing
+   - Security: security-auditor → backend → testing → devops
+   - Incidente: data-detective(30min) → backend(60min) → testing(30min) → devops
+4. Maximo 6 agentes simultaneos por fase
+5. Cada agente produce evidencia antes de entregar
+
+CUANDO HAYA ERRORES:
+Leer el error completo → Verificar contexto (¿archivo? ¿servicio? ¿puerto?) →
+Escribir test que reproduzca el error → Aplicar fix minimo →
+Confirmar no hay regresiones → Documentar causa raiz
+
+CALIDAD MINIMA (antes de marcar como terminado):
+- [ ] Tests pasan con >80% cobertura
+- [ ] Linting limpio (cero errores)
+- [ ] Type checking limpio
+- [ ] Endpoints responden (mostrar curl)
+- [ ] Commits convencionales (feat/fix/docs/refactor/test)
+- [ ] Evidencia producida (output real, no afirmaciones)
+
+Cuando estes trabado: para de adivinar → verifica estado con comandos →
+forma una hipotesis → testeala → arregla.
+
+Confirma que leiste la metodologia y estas listo para recibir instrucciones.
+```
+
+#### Version Corta (para sesiones rapidas)
+
+```
+Lee la metodologia en https://github.com/rubenhmoreno/prompt-engineering-library-v2
+(especialmente README.md, core/base-programming.md y core/multi-agent-orchestration.md).
+
+Reglas: verificar antes de actuar, TDD siempre (ROJO→VERDE→REFACTORIZAR, cobertura >80%),
+evidencia obligatoria (output real de terminal), explorar antes de modificar,
+seguridad por defecto (secrets en env vars).
+
+Workflow: Explorar → Descomponer → Contratos → Test → Implementar → Refactorizar → Evidencia
+
+Confirma que leiste y estas listo.
+```
+
+#### Ejemplo de uso
+
+**Paso 1:** Pegas el prompt de arriba
+
+**Paso 2:** La IA confirma que leyo la metodologia
+
+**Paso 3:** Le das tu instruccion especifica:
+```
+Necesito una aplicacion web de gestion de tickets de soporte.
+Stack: Python FastAPI + PostgreSQL + React.
+Features:
+- Login con roles (admin, agente, usuario)
+- CRUD de tickets con prioridad y estado
+- Dashboard con metricas
+- API REST documentada con OpenAPI
+
+Empeza con el diseno de la base de datos y la API.
+```
+
+La IA va a automaticamente:
+1. Explorar si hay codigo existente
+2. Clasificar como breadth-first (multiples subtareas)
+3. Asignar: database-architect → api-architect → backend + frontend (paralelo) → testing
+4. Aplicar TDD en cada fase
+5. Producir evidencia en cada entrega
 
 ---
 
@@ -208,10 +424,9 @@ $ curl http://localhost:8000/health
 
 | Quiero... | Ir a |
 |-----------|------|
-| Instruir a la IA con el repo | Copiar el prompt de [STANDARD_PROMPT.md](STANDARD_PROMPT.md) + URL del repo |
-| Activar toda la metodologia | Copiar un prompt de [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variantes) |
-| Iniciar una nueva sesion | Copiar el prompt condensado de [core/base-programming.md](core/base-programming.md) |
-| Usar un agente especialista | Ver la tabla de agentes abajo, luego abrir `agents/<nombre>.md` |
+| Iniciar cualquier sesion de IA con esta metodologia | Copiar el prompt de arriba |
+| Activar sin URL del repo (autocontenido) | [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) (3 variantes) |
+| Usar un agente especialista | Ver el catalogo de agentes abajo, luego abrir `agents/<nombre>.md` |
 | Ejecutar tareas en paralelo | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |
 | Prevenir errores comunes | [core/error-prevention.md](core/error-prevention.md) |
 | Validar trabajo completado | [core/real-validation.md](core/real-validation.md) |
@@ -221,36 +436,6 @@ $ curl http://localhost:8000/health
 | Navegar todo | [INDEX.md](INDEX.md) |
 
 ---
-
-### Que es esta libreria
-
-La libreria provee prompts listos para usar que configuran sesiones de Claude Code con disciplina profesional. En lugar de instrucciones improvisadas, cargas un prompt probado y obtienes inmediatamente una sesion que verifica antes de actuar, escribe tests primero, delega al especialista correcto, y se rehusa a marcar algo como terminado sin evidencia real.
-
-Incluye 15 agentes especialistas, 7 workflows, 3 templates y 9 documentos core. Todo el contenido es agnostico de tecnologia y esta disenado para mantenerse estable en el tiempo.
-
-### Inicio Rapido
-
-```bash
-# Opcion 1: Cargar el prompt base al inicio de la sesion
-# Copia el bloque condensado de core/base-programming.md y pegalo
-# como tu primer mensaje en Claude Code.
-
-# Opcion 2: Usar un slash command (ver quick-ref/slash-commands.md)
-/explore                    # Investigar el codebase antes de modificar
-/tdd "registro de usuarios" # Ejecutar ciclo TDD para un feature
-
-# Opcion 4: Invocar un agente especifico
-/task "Actua como el agente backend-developer definido en agents/backend-developer.md.
-Implementa un endpoint REST para registro de usuarios con TDD."
-
-# Opcion 5: Ejecutar un workflow multi-agente
-/task "Usa el workflow multi-agent-orchestration:
-  - Agente 1 (backend-developer): endpoint POST /api/auth/register + tests unitarios
-  - Agente 2 (frontend-developer): componente RegisterForm + tests de componente
-  - Agente 3 (testing-engineer): test E2E del flujo completo de registro
-  Ejecutar Agente 1 y Agente 2 en paralelo. Ejecutar Agente 3 despues de que ambos terminen.
-  Cada agente debe producir evidencia antes del handoff."
-```
 
 ### Catalogo de Agentes
 
@@ -292,9 +477,23 @@ Un agente, una responsabilidad. Identifica tareas independientes y ejecuta esos 
 
 ---
 
+### Donde usar el prompt estandar
+
+| Plataforma | Como cargar |
+|------------|-------------|
+| Claude Code (terminal) | Pegar como primer mensaje, o guardar en `~/.claude/system-prompt.md` y usar `claude --append-system-prompt-file ~/.claude/system-prompt.md` |
+| Claude.ai (web) | Pegar como primer mensaje del chat |
+| Claude API | Enviar como mensaje `system` en el primer request |
+| Otro LLM (GPT, Gemini, etc.) | Pegar como primer mensaje — la metodologia es agnostica de modelo |
+| CLAUDE.md del proyecto | Copiar las reglas no negociables al CLAUDE.md de tu repo |
+
+---
+
 ### Documentos Relacionados
 
 - [INDEX.md](INDEX.md) — Navegacion completa por rol, tarea y situacion
+- [STANDARD_PROMPT.md](STANDARD_PROMPT.md) — Documento completo del prompt con todas las variantes
+- [ACTIVATION_PROMPT.md](ACTIVATION_PROMPT.md) — Prompts autocontenidos (sin URL del repo)
 - [core/base-programming.md](core/base-programming.md) — Prompt maestro de sesion
 - [core/prompting-techniques.md](core/prompting-techniques.md) — CoT, Few-Shot, ReAct y mas
 - [core/real-validation.md](core/real-validation.md) — Estandares de evidencia
