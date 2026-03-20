@@ -1,6 +1,6 @@
 # All Agents Cheatsheet
 
-> **Executive Summary:** Single-page reference for all 15 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
+> **Executive Summary:** Single-page reference for all 16 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
 
 | Metadata | Value |
 |----------|-------|
@@ -30,6 +30,7 @@
 | **git-workflow-manager** | Branch strategy, commits, PRs, conflict resolution | Setting up git workflow, managing releases, resolving merge conflicts | Branch strategy doc, commit conventions, PR templates | git, gh CLI, conventional commits | [agents/git-workflow-manager.md](../agents/git-workflow-manager.md) |
 | **database-architect** | Schema design, migrations, query optimization, indexing | Designing schemas, planning migrations, optimizing slow queries | Migration files, index recommendations, schema docs | PostgreSQL, EXPLAIN ANALYZE, PgBouncer | [agents/database-architect.md](../agents/database-architect.md) |
 | **technical-writer** | API docs, ADRs, runbooks, changelogs | Post-implementation documentation, operational runbooks, decision records | API reference, ADRs, runbooks, changelogs | OpenAPI, MkDocs, Sphinx, JSDoc | [agents/technical-writer.md](../agents/technical-writer.md) |
+| **ui-ux-pro-max** | Industry-specific design, visual styles, navigation, animation, charts | New page design, choosing color/font/style by product category, mobile-native UI | Design system, style selection, navigation patterns, landing page patterns | Phosphor Icons, design reasoning rules, chart selection | [agents/ui-ux-pro-max.md](../agents/ui-ux-pro-max.md) |
 
 ---
 
@@ -83,7 +84,10 @@ What is the primary goal?
 |       --> database-architect
 |
 +-- Writing documentation, ADRs, runbooks, or changelogs?
-        --> technical-writer
+|       --> technical-writer
+|
++-- Choosing design style, colors, fonts by product category? Mobile UI?
+        --> ui-ux-pro-max
 ```
 
 ### Overlap Resolution
@@ -102,6 +106,8 @@ Some tasks sit at the boundary between agents. Use these rules:
 | Database schema + API design | database-architect (schema first) | backend-developer (implement) |
 | Slow database queries | database-architect (optimize) | performance-engineer (profile) |
 | Post-feature documentation | technical-writer | api-architect (API docs review) |
+| New product design (industry-specific) | ui-ux-pro-max (style/patterns) | ui-ux-specialist (WCAG/tokens) |
+| Mobile app UI design | ui-ux-pro-max (mobile rules) | frontend-developer (implement) |
 
 ### Multi-Agent Activation
 
@@ -133,6 +139,7 @@ When a task clearly spans multiple domains, use the [Parallel Development workfl
 | git-workflow-manager | Low | Low | Low | Medium | Low |
 | database-architect | High | Medium | High | Low | Medium |
 | technical-writer | Low | Medium | Low | Low | Low |
+| ui-ux-pro-max | Low | High | Medium | Low | Low |
 
 ---
 
@@ -157,6 +164,7 @@ Use the right technique to get the best output from each agent. See [core/prompt
 | git-workflow-manager | Few-Shot | Consistent commit formats, PR templates |
 | database-architect | Step-Back + CoT | Principles first, then reason through schema decisions |
 | technical-writer | Few-Shot | Consistent documentation formats and patterns |
+| ui-ux-pro-max | Step-Back + Few-Shot | Industry principles first, then pattern-matched design decisions |
 
 ---
 

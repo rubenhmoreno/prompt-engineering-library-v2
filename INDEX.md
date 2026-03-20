@@ -74,6 +74,7 @@ What are you trying to accomplish right now?
 | Explore unfamiliar codebase | [workflows/explore-first.md](workflows/explore-first.md) | Any |
 | Set up Claude Code hooks | [core/hooks-guide.md](core/hooks-guide.md) | Any |
 | Learn prompt construction | [core/prompt-anatomy.md](core/prompt-anatomy.md) | Any |
+| Design UI for a specific industry/product | [agents/ui-ux-pro-max.md](agents/ui-ux-pro-max.md) | ui-ux-pro-max + ui-ux-specialist |
 
 ### Navigate by Situation
 
@@ -159,7 +160,8 @@ prompt-engineering-library-v2/
 │   ├── debugger.md                         Runtime errors, systematic debugging  [NEW]
 │   ├── git-workflow-manager.md             Branch strategy, commits, PRs  [NEW]
 │   ├── database-architect.md               Schema design, migrations, queries  [NEW]
-│   └── technical-writer.md                 API docs, ADRs, runbooks  [NEW]
+│   ├── technical-writer.md                 API docs, ADRs, runbooks  [NEW]
+│   └── ui-ux-pro-max.md                   Industry design intelligence  [NEW]
 │
 ├── workflows/
 │   ├── tdd-workflow.md                     Red-Green-Refactor cycle

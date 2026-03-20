@@ -59,7 +59,7 @@ FOR COMPLEX TASKS:
    backend-developer, frontend-developer, testing-engineer, devops-engineer,
    data-analyst, data-detective, debugger, database-architect,
    security-auditor, api-architect, performance-engineer, cloud-infrastructure,
-   ui-ux-specialist, git-workflow-manager, technical-writer
+   ui-ux-specialist, ui-ux-pro-max, git-workflow-manager, technical-writer
 3. Use collaboration presets:
    - Feature: api-architect → backend + frontend (parallel) → testing → devops
    - Bugfix: debugger → backend → testing
@@ -151,7 +151,7 @@ The AI will automatically:
 
 The library provides ready-to-use prompts that configure AI sessions with professional-grade discipline. Instead of ad-hoc instructions, you load a proven prompt and immediately get a session that verifies before acting, writes tests first, delegates to the right specialist, and refuses to mark anything done without real evidence.
 
-It ships with 15 specialist agents, 7 workflows, 3 templates, and 9 core documents. All content is technology-agnostic and designed to remain stable over time.
+It ships with 16 specialist agents, 7 workflows, 3 templates, and 9 core documents. All content is technology-agnostic and designed to remain stable over time.
 
 ### Agent Roster
 
@@ -172,6 +172,7 @@ It ships with 15 specialist agents, 7 workflows, 3 templates, and 9 core documen
 | `git-workflow-manager` | Branch strategy, commits, PRs, conflict resolution | Git workflow setup, release management |
 | `database-architect` | Schema design, migrations, query optimization, indexing | Database design, slow queries, scaling |
 | `technical-writer` | API docs, ADRs, runbooks, changelogs | Post-implementation documentation |
+| `ui-ux-pro-max` | Industry-specific design, visual styles, navigation, animation, mobile UI | New product design, style selection, landing pages, chart selection |
 
 ### Architecture
 
@@ -193,7 +194,7 @@ prompt-engineering-library-v2/
 |   +-- core/claudemd-guide.md            <- CLAUDE.md creation guide
 |
 +-- AGENTS (load when you need a specialist)
-|   +-- 15 specialized agents (see roster above)
+|   +-- 16 specialized agents (see roster above)
 |
 +-- WORKFLOWS (orchestrate multi-step processes)
 |   +-- workflows/tdd-workflow.md
@@ -349,7 +350,7 @@ PARA TAREAS COMPLEJAS:
    backend-developer, frontend-developer, testing-engineer, devops-engineer,
    data-analyst, data-detective, debugger, database-architect,
    security-auditor, api-architect, performance-engineer, cloud-infrastructure,
-   ui-ux-specialist, git-workflow-manager, technical-writer
+   ui-ux-specialist, ui-ux-pro-max, git-workflow-manager, technical-writer
 3. Usar presets de colaboracion:
    - Feature: api-architect → backend + frontend (paralelo) → testing → devops
    - Bugfix: debugger → backend → testing
@@ -456,6 +457,7 @@ La IA va a automaticamente:
 | `git-workflow-manager` | Estrategia de branches, commits, PRs, resolucion de conflictos | Setup de workflow git, gestion de releases |
 | `database-architect` | Diseno de schemas, migraciones, optimizacion de queries, indices | Diseno de base de datos, queries lentas, escalado |
 | `technical-writer` | Docs de API, ADRs, runbooks, changelogs | Documentacion post-implementacion |
+| `ui-ux-pro-max` | Diseno por industria, estilos visuales, navegacion, animacion, UI mobile | Diseno de productos nuevos, seleccion de estilo, landing pages |
 
 ### Cuatro Principios Fundamentales
 

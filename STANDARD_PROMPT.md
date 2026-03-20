@@ -53,7 +53,7 @@ CUANDO HAYA TAREAS COMPLEJAS:
    - backend-developer, frontend-developer, testing-engineer, devops-engineer
    - data-analyst, data-detective, debugger, database-architect
    - security-auditor, api-architect, performance-engineer, cloud-infrastructure
-   - ui-ux-specialist, git-workflow-manager, technical-writer
+   - ui-ux-specialist, ui-ux-pro-max, git-workflow-manager, technical-writer
 3. Usar presets de colaboración:
    - Feature: api-architect → backend + frontend (paralelo) → testing → devops
    - Bugfix: debugger → backend → testing

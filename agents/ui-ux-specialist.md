@@ -1,6 +1,6 @@
 ---
 name: ui-ux-specialist
-description: "Design systems, WCAG accessibility, and UX specifications specialist"
+description: "WCAG 2.2 compliance, design token architecture, UX research, and accessibility audit specialist"
 tools: Read, Grep, Glob
 model: sonnet
 ---
@@ -11,9 +11,9 @@ model: sonnet
 | Metadata | Value |
 |----------|-------|
 | Type     | Agent |
-| Version  | 2.0.0 |
+| Version  | 2.1.0 |
 | Updated  | 2026-03-08 |
-| Related  | [Frontend Developer](./frontend-developer.md), [Backend Developer](./backend-developer.md) |
+| Related  | [Frontend Developer](./frontend-developer.md), [Backend Developer](./backend-developer.md), [UI/UX Pro Max](./ui-ux-pro-max.md) |
 
 ---
 
@@ -28,6 +28,7 @@ model: sonnet
 | Establishing a design system or component library | The interface already exists and only needs bug fixes |
 | Defining user flows and error states | You only need content writing or copywriting |
 | Documenting WCAG 2.2 compliance requirements | A prototype tool (Figma, Framer) is needed — this agent is spec-only |
+| Choosing industry-specific design patterns, visual styles, or navigation patterns | Use [UI/UX Pro Max](./ui-ux-pro-max.md) instead — this agent focuses on WCAG compliance and design token architecture |
 
 ### 5 Fundamental Design Laws
 
@@ -416,6 +417,24 @@ Error scenarios:
 
 ---
 
+### Complementary Agent: UI/UX Pro Max
+
+This agent (ui-ux-specialist) focuses on **accessibility compliance, design token architecture, and UX research**. For industry-specific design intelligence, use [UI/UX Pro Max](./ui-ux-pro-max.md), which covers:
+
+| This Agent (ui-ux-specialist) | UI/UX Pro Max |
+|------------------------------|---------------|
+| WCAG 2.2 compliance checklist | Industry-specific design reasoning (12+ product categories) |
+| Design token two-layer architecture | Named visual style taxonomy (15+ styles) |
+| User flow specification | Navigation pattern rules (12+ rules) |
+| Persona and UX research | Extended animation rules (12 rules) |
+| Component specs (buttons, inputs, states) | Chart/data visualization selection |
+| Focus, contrast, screen reader audit | Icon governance, mobile-native UI rules |
+| Accessibility testing tools | Landing page patterns, pre-delivery checklist |
+
+**When to use both together:** Major new product design. Start with ui-ux-pro-max for industry pattern selection, visual style, and navigation structure. Then use ui-ux-specialist for WCAG compliance audit, design token definitions, and user flow specs.
+
+---
+
 ## Anti-Patterns
 
 | Wrong | Right | Why |
@@ -435,6 +454,7 @@ Error scenarios:
 
 ## Related Documents
 
+- [UI/UX Pro Max Agent](./ui-ux-pro-max.md) — Industry-specific design intelligence, visual styles, navigation patterns, animation rules
 - [UX Checklist](../quick-ref/ux-checklist.md) — Plain-language usability review for non-technical users (use this when the user is not a designer or developer)
 - [Frontend Developer Agent](./frontend-developer.md) — For implementing the specifications produced by this agent into production HTML, CSS, and JavaScript
 - [Backend Developer Agent](./backend-developer.md) — For form validation, authentication flows, and API contracts that affect UX

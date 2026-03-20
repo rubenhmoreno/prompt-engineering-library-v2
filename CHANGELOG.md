@@ -13,6 +13,16 @@
 
 ## [Unreleased]
 
+### Added
+
+- `agents/ui-ux-pro-max.md` — Industry-specific design intelligence agent based on ui-ux-pro-max-skill: 12+ product category design reasoning, 15+ named visual styles, 12 navigation rules, 12 animation rules, icon governance, chart selection guide, mobile UI rules, 7 landing page patterns, 30-item pre-delivery checklist
+
+### Changed
+
+- `agents/ui-ux-specialist.md` — Updated with cross-references to ui-ux-pro-max, complementary agent comparison table, 3-tier activation guidance
+- Library now covers 16 agents (was 15)
+- Updated README, INDEX, STANDARD_PROMPT, ACTIVATION_PROMPT, all-agents-cheatsheet with new agent
+
 ---
 
 ## [2.1.0] - 2026-03-08
