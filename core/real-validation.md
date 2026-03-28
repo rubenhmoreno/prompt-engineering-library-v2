@@ -5,8 +5,8 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Core |
-| Version  | 2.0.0 |
-| Updated  | 2026-03-08 |
+| Version  | 2.2.0 |
+| Updated  | 2026-03-28 |
 | Related  | [base-programming.md](base-programming.md), [error-prevention.md](error-prevention.md), [templates/evidence-report.md](../templates/evidence-report.md) |
 
 ---
@@ -172,6 +172,60 @@ All screenshots taken!
 | Database migration | `SELECT` query result or schema describe output |
 | Docker deployment | `docker ps` output + health endpoint response |
 | Performance fix | Before/after benchmark numbers from the same test |
+
+### DONE Criteria by Surface Type
+
+Different surfaces require different evidence. Use this table to determine when a change is truly DONE:
+
+| Surface | The user is... | DONE requires... |
+|---------|---------------|------------------|
+| CLI / TUI | Human at a terminal | Terminal pane capture or full transcript showing the changed behavior |
+| Server / API | HTTP client | Request sent + complete response received (status + body) |
+| Desktop / Browser | Eyes on screen | Screenshot of the specific element changed |
+| Library / SDK | Code that imports it | Sample code exercising the changed API through the package boundary |
+| Database | Query executor | Before/after query results showing the schema or data change |
+| Background job | Log reader | Log output showing the job ran and produced the expected result |
+
+**Rule:** Match your evidence to the surface. If the change is in an API endpoint, a screenshot of the code is not evidence — a curl response is.
+
+### False PASS Red Flags
+
+These patterns indicate a verification that looks like a PASS but is actually meaningless. If you catch yourself doing any of these, **stop and get real evidence**:
+
+| # | Red Flag | Why It Fails |
+|---|----------|-------------|
+| 1 | Evidence is a code read | Reading code proves the code exists, not that it works |
+| 2 | Ran tests and called it verification | Tests verify behavior in isolation; they don't prove the feature works end-to-end |
+| 3 | Ran the app but never hit the changed path | Starting the server proves it starts, not that your change works |
+| 4 | Runtime change with no captured output | If you didn't capture the output, you can't prove what happened |
+| 5 | "Should work" / "looks right" language | Confidence is not evidence — commands and output are evidence |
+| 6 | Every step is `function() → value` | Unit test results masquerading as end-to-end verification |
+| 7 | "The function output IS the observable surface" | Reasoning your way out of running the app is not running the app |
+
+**Verdict rules:**
+- "Almost works" = **FAIL**
+- Ambiguous output = **FAIL**
+- No partial pass — it either works or it doesn't
+
+### Discovery Ladder for Verification
+
+When you need to verify but don't know how, follow this escalation:
+
+```
+1. Check if the project has a verification script or test command
+   → Found? Run it and capture output.
+
+2. Check if there's a documented run/start command
+   → Found? Start the app and exercise the changed path.
+
+3. Cold start: identify the surface type (CLI/API/Browser/Library)
+   and build a verification from scratch. Time-box to 15 minutes.
+   → Success? Capture and report.
+
+4. If cold start fails: STOP. Report BLOCKED.
+   State what you tried and what is needed to verify.
+   Never fake a PASS because verification is hard.
+```
 
 ### Integration with Task Instructions
 

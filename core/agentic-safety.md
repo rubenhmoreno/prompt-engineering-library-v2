@@ -5,8 +5,8 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Core |
-| Version  | 2.1.0 |
-| Updated  | 2026-03-08 |
+| Version  | 2.2.0 |
+| Updated  | 2026-03-28 |
 | Related  | [base-programming.md](base-programming.md), [multi-agent-orchestration.md](multi-agent-orchestration.md), [real-validation.md](real-validation.md), [prompt-anatomy.md](prompt-anatomy.md) |
 
 ---
@@ -70,7 +70,24 @@ Paste this scope block into the system prompt as a `RULES` section. Claude treat
 
 ---
 
-### 2. Action Blocklist Patterns
+### 2. Action Risk Taxonomy
+
+Before executing any non-trivial action, classify it into one of four risk categories. Higher categories require more caution.
+
+| Category | Risk Level | Examples | Required Before Executing |
+|----------|-----------|---------|--------------------------|
+| **Destructive** | Critical | `rm -rf`, `DROP TABLE`, `git reset --hard`, `docker system prune -a`, killing processes | Written scope permission + explicit human confirmation |
+| **Hard to Reverse** | High | `git push --force`, amending published commits, removing/downgrading dependencies, modifying CI/CD pipelines, database migrations on production | Human confirmation + rollback plan documented |
+| **Shared State** | Medium | `git push`, creating/closing/commenting on PRs/issues, sending messages (Slack, email, GitHub), modifying shared infrastructure or permissions | Human confirmation for first occurrence; scope-limited repeat approval |
+| **Third-Party Uploads** | Medium | Uploading to pastebins, diagram renderers, gists, external APIs | Consider sensitivity — content may be cached/indexed even if later deleted |
+
+**Key rules:**
+- Approval for one action does **not** grant blanket authorization for similar actions
+- A user asking "is it possible to...?" is **not** authorization to do it
+- When encountering an obstacle, do not use destructive actions as a shortcut — identify root causes first
+- If you discover unexpected state (unfamiliar files, branches, configuration), **investigate before deleting** — it may be the user's in-progress work
+
+### 3. Action Blocklist Patterns
 
 Some action patterns must be blocked regardless of context. These are unconditional rules, not guidelines.
 
@@ -121,7 +138,7 @@ When a scope creep signal is detected, the agent should pause and state what it 
 
 ---
 
-### 3. Human Checkpoint Triggers
+### 4. Human Checkpoint Triggers
 
 These events must pause autonomous execution and require explicit human confirmation before continuing.
 
@@ -148,7 +165,7 @@ Awaiting your go/no-go.
 
 ---
 
-### 4. Dual-Layer Security Model
+### 5. Dual-Layer Security Model
 
 Agent safety requires two independent layers. One layer alone is insufficient.
 
@@ -178,7 +195,7 @@ The evaluation layer catches actions that are technically permitted by type but 
 
 ---
 
-### 5. Runtime Drift Detection
+### 6. Runtime Drift Detection
 
 Scope drift is gradual. A single step outside scope may be acceptable (or at least low-risk), but three steps outside scope in sequence means the agent has fundamentally misunderstood or abandoned the original task.
 

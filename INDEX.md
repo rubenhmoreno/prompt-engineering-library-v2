@@ -5,8 +5,8 @@
 | Metadata | Value |
 |----------|-------|
 | Type     | Reference |
-| Version  | 2.1.0 |
-| Updated  | 2026-03-08 |
+| Version  | 2.2.0 |
+| Updated  | 2026-03-28 |
 | Related  | [README.md](README.md) |
 
 ---
@@ -51,6 +51,7 @@ What are you trying to accomplish right now?
 | Task | Workflow / Template | Agents Involved |
 |------|--------------------|-----------------|
 | Build a new feature end-to-end | [parallel-development](workflows/parallel-development.md) | backend-developer, frontend-developer, testing-engineer |
+| Review code quality after implementation | [post-implementation-review](workflows/post-implementation-review.md) | 3 parallel review agents |
 | Write tests for existing code | [tdd-workflow](workflows/tdd-workflow.md) | testing-engineer |
 | Debug a production issue | [verification-protocol](workflows/verification-protocol.md), [data-detective](agents/data-detective.md) | data-detective, backend-developer |
 | Deploy to staging or production | [verification-protocol](workflows/verification-protocol.md) | devops-engineer, cloud-infrastructure |
@@ -87,6 +88,8 @@ Something unexpected happened. Which document addresses it?
 | Script breaks on Windows but works on Linux (encoding, line endings) | [core/error-prevention.md](core/error-prevention.md) — Section 2 |
 | Syntax error, unbalanced braces, broken try-catch | [core/error-prevention.md](core/error-prevention.md) — Section 3 |
 | Command not found, dependency missing | [core/error-prevention.md](core/error-prevention.md) — Section 4 |
+| Code is over-engineered or has unnecessary complexity | [core/coding-discipline.md](core/coding-discipline.md) |
+| Sub-agent prompts produce shallow, generic work | [core/subagent-prompting.md](core/subagent-prompting.md) |
 | Need to coordinate 3+ agents without chaos | [core/multi-agent-orchestration.md](core/multi-agent-orchestration.md) |
 | Two agents are blocking each other (circular dependency) | [workflows/parallel-development.md](workflows/parallel-development.md) |
 | Test coverage is below 80% | [workflows/tdd-workflow.md](workflows/tdd-workflow.md) |
@@ -143,7 +146,9 @@ prompt-engineering-library-v2/
 │   ├── prompt-anatomy.md                   10-component prompt structure  [NEW]
 │   ├── agentic-safety.md                   Scope, blocklists, checkpoints  [NEW]
 │   ├── hooks-guide.md                      Claude Code lifecycle hooks  [NEW]
-│   └── claudemd-guide.md                   CLAUDE.md creation and maintenance  [NEW]
+│   ├── claudemd-guide.md                   CLAUDE.md creation and maintenance  [NEW]
+│   ├── coding-discipline.md                10 atomic rules against over-engineering  [NEW v2.2]
+│   └── subagent-prompting.md               Two-tier prompting doctrine for sub-agents  [NEW v2.2]
 │
 ├── agents/
 │   ├── backend-developer.md                Server-side, APIs, databases
@@ -171,7 +176,8 @@ prompt-engineering-library-v2/
 │   ├── explore-first.md                    Codebase investigation protocol  [NEW]
 │   ├── riper-workflow.md                   Research/Innovate/Plan/Execute/Review  [NEW]
 │   ├── incident-response.md                P0-P3 time-boxed incident handling  [NEW]
-│   └── session-memory.md                   Cross-session continuity patterns  [NEW]
+│   ├── session-memory.md                   Cross-session continuity patterns  [NEW]
+│   └── post-implementation-review.md       3-agent parallel code review  [NEW v2.2]
 │
 ├── templates/
 │   ├── task-decomposition.md               Break large tasks into agent work
