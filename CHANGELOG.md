@@ -32,13 +32,14 @@
 - `core/coding-discipline.md` — 10 atomic rules against over-engineering: no premature abstractions, no unnecessary additions, no compatibility hacks, YAGNI, read-before-modifying, minimize file creation, parallel tool execution, retry with diagnosis
 - `core/subagent-prompting.md` — Two-tier prompting doctrine: context-inheriting agents (directive prompts) vs fresh agents (comprehensive 6-part briefs). Worker protocol, synthesis responsibility rules, parallel dispatch patterns
 - `workflows/post-implementation-review.md` — 3-agent parallel review workflow: Code Reuse (reinvented utilities, missed library functions), Code Quality (parameter sprawl, dead code, over-engineering), Efficiency (N+1 queries, missed concurrency, memory leaks). Aggregation format and fix protocol
+- `workflows/dream-consolidation.md` — Periodic memory maintenance: 4-phase workflow (Orient → Gather Signal → Consolidate → Prune/Index) for reviewing, merging, and pruning persistent memory files. Includes automation via scheduled tasks
 
 ### Changed
 
 - `core/real-validation.md` — Added: DONE criteria by surface type table (CLI/API/Browser/Library/DB/Background job), 7 false PASS red flags with explanations, discovery ladder for verification escalation
 - `core/agentic-safety.md` — Added: 4-category action risk taxonomy (destructive, hard-to-reverse, shared-state, third-party uploads) with required preconditions per category. Renumbered sections 2→3, 3→4, 4→5, 5→6
 - `INDEX.md` — Added navigation entries for all new documents, updated file listing
-- Library now covers 11 core docs (was 9), 9 workflows (was 8)
+- Library now covers 11 core docs (was 9), 10 workflows (was 8)
 - Version bumped to 2.2.0 across updated documents
 
 ### Source

@@ -108,6 +108,7 @@ Something unexpected happened. Which document addresses it?
 | Need to enforce quality automatically | [core/hooks-guide.md](core/hooks-guide.md) |
 | Agent went out of scope during autonomous work | [core/agentic-safety.md](core/agentic-safety.md) |
 | Lost context between sessions | [workflows/session-memory.md](workflows/session-memory.md) |
+| Memories feel stale or contradictory | [workflows/dream-consolidation.md](workflows/dream-consolidation.md) |
 
 ### Quick References
 
@@ -177,7 +178,8 @@ prompt-engineering-library-v2/
 │   ├── riper-workflow.md                   Research/Innovate/Plan/Execute/Review  [NEW]
 │   ├── incident-response.md                P0-P3 time-boxed incident handling  [NEW]
 │   ├── session-memory.md                   Cross-session continuity patterns  [NEW]
-│   └── post-implementation-review.md       3-agent parallel code review  [NEW v2.2]
+│   ├── post-implementation-review.md       3-agent parallel code review  [NEW v2.2]
+│   └── dream-consolidation.md              Periodic memory maintenance  [NEW v2.2]
 │
 ├── templates/
 │   ├── task-decomposition.md               Break large tasks into agent work
