@@ -1,6 +1,6 @@
 # All Agents Cheatsheet
 
-> **Executive Summary:** Single-page reference for all 16 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
+> **Executive Summary:** Single-page reference for all 19 specialized agents in the library. Use the table to identify the right agent for your task and the decision tree to break ties. Each agent link leads to full documentation with examples and anti-patterns.
 
 | Metadata | Value |
 |----------|-------|
@@ -31,6 +31,9 @@
 | **database-architect** | Schema design, migrations, query optimization, indexing | Designing schemas, planning migrations, optimizing slow queries | Migration files, index recommendations, schema docs | PostgreSQL, EXPLAIN ANALYZE, PgBouncer | [agents/database-architect.md](../agents/database-architect.md) |
 | **technical-writer** | API docs, ADRs, runbooks, changelogs | Post-implementation documentation, operational runbooks, decision records | API reference, ADRs, runbooks, changelogs | OpenAPI, MkDocs, Sphinx, JSDoc | [agents/technical-writer.md](../agents/technical-writer.md) |
 | **ui-ux-pro-max** | Industry-specific design, visual styles, navigation, animation, charts | New page design, choosing color/font/style by product category, mobile-native UI | Design system, style selection, navigation patterns, landing page patterns | Phosphor Icons, design reasoning rules, chart selection | [agents/ui-ux-pro-max.md](../agents/ui-ux-pro-max.md) |
+| **pentester-auditor** | Penetration testing, OSINT, vulnerability assessment, infrastructure audit | Active security testing, vulnerability discovery, attack surface mapping, compliance audits | Vulnerability report, CVSS-scored findings, kill chain analysis, remediation plan | Nmap, Nuclei, ffuf, SQLMap, testssl.sh, Trivy, trufflehog | [agents/pentester-auditor.md](../agents/pentester-auditor.md) |
+| **blue-team-engineer** | Defensive security, SOC operations, hardening, incident response, zero-trust | Firewall config, server hardening, incident response, SIEM setup, monitoring, backup/DR | Hardening plan, firewall rules, IDS config, incident playbooks, compliance report | ufw/iptables, Suricata, Wazuh, Fail2ban, Lynis, AIDE, WireGuard | [agents/blue-team-engineer.md](../agents/blue-team-engineer.md) |
+| **red-team-researcher** | Threat intelligence, adversary emulation, red team design, strategic risk | Threat modeling, red team exercise design, TTP analysis, executive risk reports | Threat model, attack scenarios, ATT&CK mapping, executive risk assessment | STRIDE, PASTA, MITRE ATT&CK, Kill Chain analysis | [agents/red-team-researcher.md](../agents/red-team-researcher.md) |
 
 ---
 
@@ -87,7 +90,16 @@ What is the primary goal?
 |       --> technical-writer
 |
 +-- Choosing design style, colors, fonts by product category? Mobile UI?
-        --> ui-ux-pro-max
+|       --> ui-ux-pro-max
+|
++-- Penetration testing, vulnerability scanning, OSINT, attack surface mapping?
+|       --> pentester-auditor
+|
++-- Hardening servers, configuring firewalls, incident response, SIEM setup?
+|       --> blue-team-engineer
+|
++-- Threat modeling, red team exercise design, adversary emulation, executive risk?
+        --> red-team-researcher
 ```
 
 ### Overlap Resolution
@@ -98,6 +110,10 @@ Some tasks sit at the boundary between agents. Use these rules:
 |-----------|---------------|-----------------|
 | API design + implementation | api-architect (design first) | backend-developer (implement after) |
 | Security-sensitive backend code | backend-developer | security-auditor (review after) |
+| Penetration test with remediation | pentester-auditor (find vulns) | blue-team-engineer (remediate) |
+| Threat modeling + red team exercise | red-team-researcher (strategy) | pentester-auditor (execute) |
+| Full security audit (all phases) | pentester-auditor + security-auditor | blue-team-engineer + red-team-researcher |
+| Incident response with forensics | blue-team-engineer (respond) | pentester-auditor (investigate vector) |
 | Frontend performance problems | performance-engineer | frontend-developer (apply fixes) |
 | Cloud deployment with CI/CD | devops-engineer | cloud-infrastructure (if K8s/IaC involved) |
 | Data bug in production | data-detective (diagnose) | data-analyst (fix pipeline) |
@@ -117,6 +133,9 @@ When a task clearly spans multiple domains, use the [Parallel Development workfl
 - **Secure API**: api-architect + backend-developer + security-auditor
 - **Production incident**: data-detective + performance-engineer + devops-engineer
 - **Cloud-native deployment**: cloud-infrastructure + devops-engineer + security-auditor
+- **Full security audit**: pentester-auditor + security-auditor + red-team-researcher + blue-team-engineer
+- **Pentest + remediation**: pentester-auditor + blue-team-engineer
+- **Threat assessment**: red-team-researcher + pentester-auditor
 
 ---
 
@@ -140,6 +159,9 @@ When a task clearly spans multiple domains, use the [Parallel Development workfl
 | database-architect | High | Medium | High | Low | Medium |
 | technical-writer | Low | Medium | Low | Low | Low |
 | ui-ux-pro-max | Low | High | Medium | Low | Low |
+| pentester-auditor | Medium | Low | High | Medium | High |
+| blue-team-engineer | Medium | Low | Medium | High | High |
+| red-team-researcher | Low | Low | High | Low | High |
 
 ---
 
@@ -165,6 +187,9 @@ Use the right technique to get the best output from each agent. See [core/prompt
 | database-architect | Step-Back + CoT | Principles first, then reason through schema decisions |
 | technical-writer | Few-Shot | Consistent documentation formats and patterns |
 | ui-ux-pro-max | Step-Back + Few-Shot | Industry principles first, then pattern-matched design decisions |
+| pentester-auditor | ReAct + Self-Consistency | Observe-test-verify cycle, multi-angle vulnerability analysis |
+| blue-team-engineer | ReAct + CoT | Check state before hardening, reason through defense layers |
+| red-team-researcher | Step-Back + ToT | Strategic principles first, then explore attack scenarios |
 
 ---
 

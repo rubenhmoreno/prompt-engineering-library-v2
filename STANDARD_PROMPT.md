@@ -54,10 +54,13 @@ CUANDO HAYA TAREAS COMPLEJAS:
    - data-analyst, data-detective, debugger, database-architect
    - security-auditor, api-architect, performance-engineer, cloud-infrastructure
    - ui-ux-specialist, ui-ux-pro-max, git-workflow-manager, technical-writer
+   - pentester-auditor, blue-team-engineer, red-team-researcher
 3. Usar presets de colaboración:
    - Feature: api-architect → backend + frontend (paralelo) → testing → devops
    - Bugfix: debugger → backend → testing
    - Security: security-auditor → backend → testing → devops
+   - Full Security Audit: pentester-auditor + security-auditor (paralelo) → red-team-researcher → blue-team-engineer
+   - Pentest: pentester-auditor → blue-team-engineer (remediacion) → testing (verificacion)
    - Incidente: data-detective(30min) → backend(60min) → testing(30min) → devops
 4. Máximo 6 agentes simultáneos por fase
 5. Cada agente produce evidencia antes de entregar

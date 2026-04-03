@@ -36,13 +36,14 @@ Who are you in this session? Start with the agents and documents most relevant t
 | QA / test engineer | [testing-engineer](agents/testing-engineer.md) | [tdd-workflow](workflows/tdd-workflow.md), [real-validation](core/real-validation.md) |
 | DevOps / SRE | [devops-engineer](agents/devops-engineer.md), [cloud-infrastructure](agents/cloud-infrastructure.md) | [verification-protocol](workflows/verification-protocol.md), [error-prevention](core/error-prevention.md) |
 | Data engineer / analyst | [data-analyst](agents/data-analyst.md), [data-detective](agents/data-detective.md) | [real-validation](core/real-validation.md) |
-| Security engineer | [security-auditor](agents/security-auditor.md) | [error-prevention](core/error-prevention.md), [verification-protocol](workflows/verification-protocol.md) |
+| Security engineer | [security-auditor](agents/security-auditor.md), [pentester-auditor](agents/pentester-auditor.md), [blue-team-engineer](agents/blue-team-engineer.md), [red-team-researcher](agents/red-team-researcher.md) | [security-audit](workflows/security-audit.md), [security-frameworks-reference](core/security-frameworks-reference.md) |
 | API designer | [api-architect](agents/api-architect.md), [backend-developer](agents/backend-developer.md) | [tdd-workflow](workflows/tdd-workflow.md) |
 | Performance engineer | [performance-engineer](agents/performance-engineer.md) | [real-validation](core/real-validation.md), [verification-protocol](workflows/verification-protocol.md) |
 | Tech lead / architect | All agents as orchestrator | [multi-agent-orchestration](core/multi-agent-orchestration.md), [parallel-development](workflows/parallel-development.md) |
 | DBA | [database-architect](agents/database-architect.md) | [tdd-workflow](workflows/tdd-workflow.md), [verification-protocol](workflows/verification-protocol.md) |
 | Tech writer | [technical-writer](agents/technical-writer.md) | [evidence-report](templates/evidence-report.md) |
-| Incident responder | [data-detective](agents/data-detective.md), [backend-developer](agents/backend-developer.md) | [incident-response](workflows/incident-response.md) |
+| Incident responder | [data-detective](agents/data-detective.md), [backend-developer](agents/backend-developer.md), [blue-team-engineer](agents/blue-team-engineer.md) | [incident-response](workflows/incident-response.md), [security-audit](workflows/security-audit.md) |
+| Pentester | [pentester-auditor](agents/pentester-auditor.md), [red-team-researcher](agents/red-team-researcher.md) | [security-audit](workflows/security-audit.md), [security-frameworks-reference](core/security-frameworks-reference.md) |
 
 ### Navigate by Task
 
@@ -58,7 +59,11 @@ What are you trying to accomplish right now?
 | Deploy for the first time (non-technical) | [simple-deployment](workflows/simple-deployment.md) | devops-engineer |
 | Check if the interface is easy to use | [ux-checklist](quick-ref/ux-checklist.md) | ui-ux-specialist |
 | Design an API from scratch | [task-decomposition](templates/task-decomposition.md) | api-architect, backend-developer |
-| Run a security audit | [verification-protocol](workflows/verification-protocol.md) | security-auditor, testing-engineer |
+| Run a security audit | [security-audit](workflows/security-audit.md) | pentester-auditor, security-auditor, blue-team-engineer, red-team-researcher |
+| Penetration test | [security-audit](workflows/security-audit.md) | pentester-auditor, red-team-researcher |
+| Harden a server | [agents/blue-team-engineer.md](agents/blue-team-engineer.md) | blue-team-engineer, security-auditor |
+| Threat modeling | [agents/red-team-researcher.md](agents/red-team-researcher.md) | red-team-researcher |
+| Security framework reference | [core/security-frameworks-reference.md](core/security-frameworks-reference.md) | Any security agent |
 | Profile and optimize performance | [real-validation](core/real-validation.md) | performance-engineer, backend-developer |
 | Analyze a dataset | — | data-analyst |
 | Hand off work between agents | [agent-handoff](templates/agent-handoff.md) | Any pair |
@@ -97,7 +102,10 @@ Something unexpected happened. Which document addresses it?
 | Deployment went wrong and rollback needed | [agents/devops-engineer.md](agents/devops-engineer.md) |
 | I need to put my app on a server for the first time | [workflows/simple-deployment.md](workflows/simple-deployment.md) |
 | Users say the app is confusing or hard to use | [quick-ref/ux-checklist.md](quick-ref/ux-checklist.md) |
-| Security vulnerability discovered post-deploy | [agents/security-auditor.md](agents/security-auditor.md) |
+| Security vulnerability discovered post-deploy | [agents/security-auditor.md](agents/security-auditor.md), [workflows/security-audit.md](workflows/security-audit.md) |
+| Need to harden server or infrastructure | [agents/blue-team-engineer.md](agents/blue-team-engineer.md) |
+| Red team exercise planning | [agents/red-team-researcher.md](agents/red-team-researcher.md) |
+| Penetration test of infrastructure | [agents/pentester-auditor.md](agents/pentester-auditor.md) |
 | AI gives shallow, wrong, or inconsistent answers | [core/prompting-techniques.md](core/prompting-techniques.md) — Activation Table |
 | Need to choose between multiple valid approaches | [core/prompting-techniques.md](core/prompting-techniques.md) — Tree of Thoughts |
 | Debugging and AI keeps guessing instead of checking | [core/prompting-techniques.md](core/prompting-techniques.md) — ReAct |
@@ -116,7 +124,7 @@ Fast one-screen lookups (tables and checklists only, no prose).
 
 | Reference | Contents |
 |-----------|----------|
-| [All Agents Cheatsheet](quick-ref/all-agents-cheatsheet.md) | All 11 agents: purpose, tools, and selection guide |
+| [All Agents Cheatsheet](quick-ref/all-agents-cheatsheet.md) | All 19 agents: purpose, tools, and selection guide |
 | [Workflow Decision Tree](quick-ref/workflow-decision-tree.md) | Choose the right workflow for your task |
 | [Command Reference](quick-ref/command-reference.md) | All essential shell commands by category |
 | [Template Selector](quick-ref/template-selector.md) | Choose the right template for your situation |
@@ -149,7 +157,8 @@ prompt-engineering-library-v2/
 │   ├── hooks-guide.md                      Claude Code lifecycle hooks  [NEW]
 │   ├── claudemd-guide.md                   CLAUDE.md creation and maintenance  [NEW]
 │   ├── coding-discipline.md                10 atomic rules against over-engineering  [NEW v2.2]
-│   └── subagent-prompting.md               Two-tier prompting doctrine for sub-agents  [NEW v2.2]
+│   ├── subagent-prompting.md               Two-tier prompting doctrine for sub-agents  [NEW v2.2]
+│   └── security-frameworks-reference.md    Cybersecurity frameworks & tools index  [NEW v2.3]
 │
 ├── agents/
 │   ├── backend-developer.md                Server-side, APIs, databases
@@ -167,7 +176,10 @@ prompt-engineering-library-v2/
 │   ├── git-workflow-manager.md             Branch strategy, commits, PRs  [NEW]
 │   ├── database-architect.md               Schema design, migrations, queries  [NEW]
 │   ├── technical-writer.md                 API docs, ADRs, runbooks  [NEW]
-│   └── ui-ux-pro-max.md                   Industry design intelligence  [NEW]
+│   ├── ui-ux-pro-max.md                   Industry design intelligence  [NEW]
+│   ├── pentester-auditor.md               Pentesting, OSINT, vulnerability assessment  [NEW v2.3]
+│   ├── blue-team-engineer.md              Defensive security, SOC, hardening  [NEW v2.3]
+│   └── red-team-researcher.md             Threat intel, adversary emulation  [NEW v2.3]
 │
 ├── workflows/
 │   ├── tdd-workflow.md                     Red-Green-Refactor cycle
@@ -179,7 +191,8 @@ prompt-engineering-library-v2/
 │   ├── incident-response.md                P0-P3 time-boxed incident handling  [NEW]
 │   ├── session-memory.md                   Cross-session continuity patterns  [NEW]
 │   ├── post-implementation-review.md       3-agent parallel code review  [NEW v2.2]
-│   └── dream-consolidation.md              Periodic memory maintenance  [NEW v2.2]
+│   ├── dream-consolidation.md              Periodic memory maintenance  [NEW v2.2]
+│   └── security-audit.md                  Security Audit Mode (5-phase)  [NEW v2.3]
 │
 ├── templates/
 │   ├── task-decomposition.md               Break large tasks into agent work

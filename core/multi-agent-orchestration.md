@@ -1,6 +1,6 @@
 # Multi-Agent Orchestration
 
-> **Executive Summary:** A framework for dividing complex software tasks among specialized agents running in parallel. It defines all 11 available agents with their tools and outputs, a reusable orchestration template, and the rules that determine when to parallelize versus serialize. Typical time savings: 30-40% compared to sequential execution.
+> **Executive Summary:** A framework for dividing complex software tasks among specialized agents running in parallel. It defines all 14 available agents with their tools and outputs, a reusable orchestration template, and the rules that determine when to parallelize versus serialize. Typical time savings: 30-40% compared to sequential execution.
 
 | Metadata | Value |
 |----------|-------|
@@ -70,6 +70,9 @@ When one agent finishes, it produces a documented handoff: what was built, what 
 | `api-architect` | API design, OpenAPI specs, versioning strategy | Read, Write | OpenAPI spec + contract doc | Spec validates, breaking changes identified |
 | `performance-engineer` | Profiling, benchmarking, caching, query optimization | Bash (profilers), Read | Benchmark report + optimization plan | P95 within SLA, regressions identified |
 | `cloud-infrastructure` | AWS/GCP/Azure provisioning, IaC, cost optimization | Bash (terraform/pulumi), Read, Write | IaC files + cost analysis | Infrastructure provisions cleanly |
+| `pentester-auditor` | Penetration testing, OSINT, vulnerability assessment | Read, Grep, Glob, Bash (scanners) | Vulnerability report + CVSS findings | Findings classified, evidence attached |
+| `blue-team-engineer` | Defensive security, hardening, incident response | Read, Grep, Glob, Bash (hardening tools) | Hardening plan + firewall rules + policies | CIS compliance, monitoring active |
+| `red-team-researcher` | Threat intelligence, adversary emulation, strategy | Read, Grep, Glob | Threat model + ATT&CK mapping + risk report | Scenarios prioritized, controls mapped |
 
 ### Orchestration Template
 
@@ -188,6 +191,9 @@ The orchestrator coordinates, classifies, and synthesizes — it NEVER does prim
 | Feature | api-architect → backend-developer + frontend-developer (parallel) → testing-engineer → devops-engineer | Backend+frontend parallel only if API contract frozen |
 | Bugfix | data-detective → backend-developer → testing-engineer | Time-box diagnosis to 30 min |
 | Security Audit | security-auditor → backend-developer (remediate) → testing-engineer (verify) → devops-engineer (CI gates) | Sequential only |
+| Full Security Audit | pentester-auditor + security-auditor (parallel) → red-team-researcher → blue-team-engineer → devops-engineer | See workflows/security-audit.md |
+| Pentest + Remediation | pentester-auditor → blue-team-engineer (harden) → testing-engineer (verify) | Sequential: find then fix |
+| Threat Assessment | red-team-researcher → pentester-auditor (validate scenarios) → blue-team-engineer (controls) | Strategic then tactical |
 | Performance | performance-engineer → backend-developer → testing-engineer → devops-engineer | Profile before optimizing |
 | Refactor | api-architect (review) → backend-developer → testing-engineer | Never refactor without tests first |
 | Incident | data-detective → backend-developer → testing-engineer → devops-engineer | See workflows/incident-response.md |

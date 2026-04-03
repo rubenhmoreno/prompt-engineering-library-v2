@@ -123,7 +123,17 @@ PRESETS:
 - Feature: api-architect → backend + frontend (parallel) → testing → devops
 - Bugfix: debugger → backend → testing
 - Security: security-auditor → backend (remediate) → testing → devops
+- Full Security Audit: pentester-auditor + security-auditor (parallel) → red-team-researcher → blue-team-engineer
+- Pentest: pentester-auditor → blue-team-engineer (harden) → testing (verify)
 - Incident: data-detective(30min) → backend(60min) → testing(30min) → devops(30min)
+
+SECURITY AUDIT MODE (activate for security evaluations):
+Phase 1: RECONNAISSANCE — passive OSINT → active enumeration → surface mapping
+Phase 2: ANALYSIS — vulnerability scanning → CVSS classification → CWE mapping
+Phase 3: EXPLOITABILITY — kill chain analysis → ATT&CK mapping → risk scenarios
+Phase 4: REMEDIATION — quick wins → hardening plan → architecture → policies
+Phase 5: REPORT — executive summary → technical findings → evidence
+Rules: authorized scope required | no evidence = [THEORETICAL] | always CVSS + CWE
 
 FAILURE RECOVERY:
 1. Retry same scope → 2. Simplify scope → 3. Escalate to orchestrator → 4. Checkpoint resume
