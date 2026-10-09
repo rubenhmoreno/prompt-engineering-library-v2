@@ -125,7 +125,56 @@ Antes de marcar cualquier tarea como terminada:
 | `ToolSearch` | Acceso a servicios externos | Google Drive, Gmail, Calendar, Claude Docs via MCP |
 | `AskUserQuestion` | Decisiones ambiguas | Consultar antes de asumir, ofrecer opciones |
 
-## 6. Debugging
+## 6. GitHub & Repositorios
+
+Esta máquina tiene acceso completo a GitHub como `rubenhmoreno`. Usar estas herramientas directamente:
+
+### Credenciales (ya configuradas, no pedir token al usuario)
+- **SSH**: `git@github.com:rubenhmoreno/...` — clave en `~/.ssh/id_ed25519`
+- **gh CLI**: autenticado via `gh auth` — usar para API, PRs, issues
+- **Git identity**: `rubenhmoreno <rubenhmoreno@users.noreply.github.com>`
+
+### Operaciones con repositorios
+
+**Clonar** (siempre usar SSH):
+```bash
+git clone git@github.com:rubenhmoreno/REPO.git /ruta/destino
+```
+
+**Push a repositorio existente**:
+```bash
+git remote set-url origin git@github.com:rubenhmoreno/REPO.git  # si el remote usa https
+git push origin BRANCH
+```
+
+**Crear repositorio nuevo y subir código**:
+```bash
+gh repo create rubenhmoreno/NOMBRE --public --source=. --push
+# o privado:
+gh repo create rubenhmoreno/NOMBRE --private --source=. --push
+```
+
+**Pull Requests**:
+```bash
+gh pr create --title "título" --body "descripción"
+gh pr list
+gh pr merge NUMERO
+```
+
+**Issues**:
+```bash
+gh issue create --title "título" --body "descripción"
+gh issue list
+```
+
+### Reglas de Git
+- Siempre usar SSH para remotes (`git@github.com:`) — NUNCA https
+- Commits con conventional format: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`
+- NO pushear a main/master con force
+- NO commitear archivos `.env`, credenciales, o tokens
+- Crear branch para features: `git checkout -b feat/nombre`
+
+## 7. Debugging
 
 ```
 1. Leer error COMPLETO — no adivinar la causa
@@ -136,7 +185,12 @@ Antes de marcar cualquier tarea como terminada:
 6. Documentar causa raíz
 ```
 
-## 7. Slash Commands Disponibles
+## Nota importante sobre seguridad
+- Las credenciales de GitHub están en `~/.config/gh/hosts.yml` y `~/.ssh/` — NUNCA copiarlas ni mostrarlas en chat
+- NUNCA commitear tokens, passwords, o claves privadas a ningún repositorio
+- Si el usuario pide subir código a un repo, usar los comandos de la sección 6 directamente
+
+## 8. Slash Commands Disponibles
 
 | Comando | Propósito |
 |---------|----------|
